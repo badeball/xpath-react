@@ -1,0 +1,25 @@
+{
+  "name": "xpath-react",
+  "version": "0.0.1",
+  "description": "A React adapter for xpath-evaluator.",
+  "main": "lib/xpath_react.js",
+  "author": "Jonas Amundsen <jonasba@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/badeball/xpath-react.git"
+  },
+  "dependencies": {
+    "xpath-evaluator": "badeball/xpath-evaluator"
+  },
+  "devDependencies": {
+    "babel": "5.8.23",
+    "eslint": "0.24.1",
+    "mocha": "2.3.0",
+    "react": "0.13.3"
+  },
+  "files": [
+    "register.js",
+    "lib"
+  ],
+  "license": "MIT"
+}
