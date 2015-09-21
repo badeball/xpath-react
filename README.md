@@ -4,7 +4,7 @@ A React adapter for [xpath-evaluator][xpath-evaluator]. Together with its
 dependencies, it allows you to query the internal DOM of [React][react] with
 XPath 1.0 expressions.
 
-[xpath-evaluator]: badeball/xpath-evaluator
+[xpath-evaluator]: https://github.com/badeball/xpath-evaluator
 [react]: https://facebook.github.io/react/
 
 ## Usage
