@@ -2,18 +2,12 @@
 
 A React adapter for [xpath-evaluator][xpath-evaluator]. Together with its
 dependencies, it allows you to query the internal DOM of [React][react] with
-XPath 1.0 expressions.
+XPath 1.0 expressions. This is normally not used directly, but through
+[Reactorist][reactorist].
 
 [xpath-evaluator]: https://github.com/badeball/xpath-evaluator
 [react]: https://facebook.github.io/react/
-
-## Usage
-
-[This][example] example shows how you can make assertions about the renderings
-of a React component, as well as to create a helper utility to simulate user
-interaction without depending on a browser environment at all.
-
-[example]: example/
+[reactorist]: https://github.com/badeball/reactorist
 
 ## Known issues
 
