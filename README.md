@@ -1,5 +1,7 @@
 # xpath-react
 
+[![Build Status](https://travis-ci.org/badeball/xpath-react.svg?branch=master)](https://travis-ci.org/badeball/xpath-react)
+
 A React adapter for [xpath-evaluator][xpath-evaluator]. Together with its
 dependencies, it allows you to query the internal DOM of [React][react] with
 XPath 1.0 expressions. This is normally not used directly, but through
