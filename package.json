@@ -9,7 +9,7 @@
     "url": "git://github.com/badeball/xpath-react.git"
   },
   "dependencies": {
-    "xpath-evaluator": "badeball/xpath-evaluator"
+    "xpath-evaluator": "^1.0.1"
   },
   "devDependencies": {
     "babel": "5.8.23",
