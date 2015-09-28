@@ -9,6 +9,14 @@ XPath 1.0 expressions.
 [xpath-evaluator]: https://github.com/badeball/xpath-evaluator
 [react]: https://facebook.github.io/react/
 
+## Installation
+
+The package can be installed with `npm`.
+
+```
+$ npm install xpath-react
+```
+
 ## Usage
 
 [This][example] example shows how you can make assertions about the renderings
