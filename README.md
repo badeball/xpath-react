@@ -42,9 +42,9 @@ find a blog post about it [here][blog], which also contains some examples.
   with the id in the object tree of the context.
 
 * The `ancestor`, `ancestor-or-self`, `following`, `following-sibling`,
-  `parent`, `preceding` and `preceding-sibling` are not suppoerted. This is due
-  to the inability to determine the parent of a React element and the inability
-  to comparing document positions.
+  `parent`, `preceding` and `preceding-sibling` axes are not suppoerted. This
+  is due to the inability to determine the parent of a React element and the
+  inability to comparing document positions.
 
 * The `..` abbreviation is not supported. This is due to the inability to
   determine the parent of a React element.
