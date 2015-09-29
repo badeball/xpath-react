@@ -21,9 +21,11 @@ $ npm install xpath-react
 
 [This][example] example shows how you can make assertions about the renderings
 of a React component, as well as to create a helper utility to simulate user
-interaction without depending on a browser environment at all.
+interaction without depending on a browser environment at all. You may also
+find a blog post about it [here][blog], which also contains some examples.
 
 [example]: example/
+[blog]: http://badeball.github.io/2015/09/29/unit-testing-react-components-with-xpath.html
 
 ## Known issues
 
