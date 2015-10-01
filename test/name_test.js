@@ -21,7 +21,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("name", function () {
     test("unique name", function () {
       assertEvaluatesToNodeSet("//*[@name='single']", ["div#single"]);

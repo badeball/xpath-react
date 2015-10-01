@@ -35,7 +35,7 @@ var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, docume
 
 var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("simple value", function () {
     test("00", function () {
       assertEvaluatesToValue("local-name(/head)", "head");

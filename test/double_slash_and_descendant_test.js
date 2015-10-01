@@ -37,7 +37,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("double slash and descendant", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("/descendant::div", ["div#parent", "div#child-1", "div#grand-child-1-1", "div#grand-child-1-2", "div#grand-child-1-3", "div#child-2", "div#grand-child-2-1", "div#grand-child-2-2", "div#grand-child-2-3"]);

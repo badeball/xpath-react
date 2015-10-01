@@ -25,7 +25,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("complex href", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//a[@href='javascript:doFoo(a, b)']", ["a#id0-0"]);

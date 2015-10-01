@@ -54,7 +54,7 @@ var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, docume
 
 var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("misc", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//div[2]", ["div#id2", "div#id4-2"]);

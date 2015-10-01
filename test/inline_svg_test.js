@@ -24,7 +24,7 @@ var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, docume
 
 // TODO: Use a namespace prefix once support for namespaces are implemented.
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("inline svg", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//svg", ["svg#svg"]);

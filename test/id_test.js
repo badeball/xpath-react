@@ -20,7 +20,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("id", function () {
     test("with unique id by function", function () {
       assertEvaluatesToNodeSet("id('uniqueid')", ["div#uniqueid"]);

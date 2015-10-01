@@ -37,7 +37,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("element had length property", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("id('target')", ["select#target"]);

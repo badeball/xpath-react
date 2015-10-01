@@ -19,7 +19,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("math", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//*[@price * (@count + @count) = 12]", ["div#with"]);

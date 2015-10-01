@@ -53,7 +53,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("basic functional", function () {
     test("00", function () {
       assertEvaluatesToNodeSet(".//blockquote/*", ["br", "p", "font"]);

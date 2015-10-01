@@ -39,7 +39,7 @@ var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, docume
 
 var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("attribute", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//blockquote['http://coderepos.org/'=@cite]", ["blockquote"]);

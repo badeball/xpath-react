@@ -21,7 +21,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("descendant", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("//*", ["head", "title", "body", "h1"]);

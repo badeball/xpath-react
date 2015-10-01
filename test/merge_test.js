@@ -32,7 +32,7 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
-suite("XPathDOM", function () {
+suite("XPathReact", function () {
   suite("merge", function () {
     test("00", function () {
       assertEvaluatesToNodeSet("id('container')/*[1]", ["li#li-1"]);
