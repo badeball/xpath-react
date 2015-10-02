@@ -42,7 +42,7 @@ post about it [here][blog], which also contains some examples.
 
 ```
 XPathResult XPath.evaluate (
-  DOMString expressio,
+  DOMString expression,
   ReactElement contextNode,
   XPathNSResolver resolver,
   XPathResultType type,
