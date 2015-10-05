@@ -2,8 +2,8 @@
 
 var XPathEvaluator = require("xpath-evaluator");
 
-var XPathReact = require("./lib/xpath_react");
+var ReactDocument = require("./lib/types/react_document");
 
-XPathEvaluator.setAdapter(XPathReact);
+XPathEvaluator.setAdapter(ReactDocument);
 
 module.exports = XPathEvaluator;
