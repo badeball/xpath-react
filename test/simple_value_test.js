@@ -38,7 +38,7 @@ var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
 suite("XPathReact", function () {
   suite("simple value", function () {
     test("00", function () {
-      assertEvaluatesToValue("local-name(/head)", "head");
+      assertEvaluatesToValue("local-name(/html)", "html");
     });
 
     test("01", function () {
@@ -53,7 +53,7 @@ suite("XPathReact", function () {
       assertEvaluatesToValue("boolean(id('b'))", true);
     });
 
-    test.skip("04", function () {
+    test("04", function () {
       assertEvaluatesToValue("boolean(/..)", false);
     });
 
@@ -157,16 +157,19 @@ suite("XPathReact", function () {
       assertEvaluatesToValue("normalize-space(string(/))", DOCUMENT_AS_STRING);
     });
 
+    test("30", function () {
+      assertEvaluatesToValue("normalize-space(string(/html))", DOCUMENT_AS_STRING);
+    });
+
     test("31", function () {
       assertEvaluatesToValue("normalize-space(string(//div))", "hoge3");
     });
 
-    // This is pending due to being dependant upon node ordering.
-    test.skip("32", function () {
+    test("32", function () {
       assertEvaluatesToValue("string(//*//*//*)", "Title");
     });
 
-    test.skip("33", function () {
+    test("33", function () {
       assertEvaluatesToValue("string(/..)", "");
     });
 

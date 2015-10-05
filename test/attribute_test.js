@@ -117,27 +117,27 @@ suite("XPathReact", function () {
       assertEvaluatesToNodeSet("//p/node()[@name='bar']", ["input.input-2"]);
     });
 
-    test.skip("19", function () {
+    test("19", function () {
       assertEvaluatesToNodeSet("id('pSib')/following-sibling::*[@id][1]", ["input.input-1"]);
     });
 
-    test.skip("20", function () {
+    test("20", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding-sibling::*[@id][1]", ["img.img-2"]);
     });
 
-    test.skip("21", function () {
+    test("21", function () {
       assertEvaluatesToNodeSet("id('pSib')/following-sibling::*[@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("22", function () {
+    test("22", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding-sibling::*[@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("23", function () {
+    test("23", function () {
       assertEvaluatesToNodeSet("id('pSib')/following::*[@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("24", function () {
+    test("24", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding::*[@id='foo']", ["input.input-2"]);
     });
 
@@ -157,15 +157,15 @@ suite("XPathReact", function () {
       assertEvaluatesToNodeSet("id('foo')/self::*[@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("29", function () {
+    test("29", function () {
       assertEvaluatesToNodeSet("id('foo')/parent::*[@id='paragraph']", ["p"]);
     });
 
-    test.skip("30", function () {
+    test("30", function () {
       assertEvaluatesToNodeSet("id('foo')/ancestor::*[@id='paragraph']", ["p"]);
     });
 
-    test.skip("31", function () {
+    test("31", function () {
       assertEvaluatesToNodeSet("id('foo')/ancestor-or-self::*[@id='paragraph']", ["p"]);
     });
 
@@ -201,7 +201,7 @@ suite("XPathReact", function () {
       assertEvaluatesToNodeSet("//*[(@href|@cite)='http://coderepos.org/']", ["link", "blockquote", "a"]);
     });
 
-    test.skip("40", function () {
+    test("40", function () {
       assertEvaluatesToValue("count(//blockquote/@*) = count(//blockquote/@* | //blockquote/@*)", true);
     });
 
@@ -273,27 +273,27 @@ suite("XPathReact", function () {
       assertEvaluatesToNodeSet("//node()[./@name='bar']", ["input.input-2"]);
     });
 
-    test.skip("58", function () {
+    test("58", function () {
       assertEvaluatesToNodeSet("id('pSib')/following-sibling::*[./@id][1]", ["input.input-1"]);
     });
 
-    test.skip("59", function () {
+    test("59", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding-sibling::*[./@id][1]", ["img.img-2"]);
     });
 
-    test.skip("60", function () {
+    test("60", function () {
       assertEvaluatesToNodeSet("id('pSib')/following-sibling::*[./@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("61", function () {
+    test("61", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding-sibling::*[./@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("62", function () {
+    test("62", function () {
       assertEvaluatesToNodeSet("id('pSib')/following::*[./@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("63", function () {
+    test("63", function () {
       assertEvaluatesToNodeSet("id('nSib')/preceding::*[./@id='foo']", ["input.input-2"]);
     });
 
@@ -309,15 +309,15 @@ suite("XPathReact", function () {
       assertEvaluatesToNodeSet("id('foo')/self::*[./@id='foo']", ["input.input-2"]);
     });
 
-    test.skip("67", function () {
+    test("67", function () {
       assertEvaluatesToNodeSet("id('foo')/parent::*[./@id='paragraph']", ["p"]);
     });
 
-    test.skip("68", function () {
+    test("68", function () {
       assertEvaluatesToNodeSet("id('foo')/ancestor::*[./@id='paragraph']", ["p"]);
     });
 
-    test.skip("69", function () {
+    test("69", function () {
       assertEvaluatesToNodeSet("id('foo')/ancestor-or-self::*[./@id='paragraph']", ["p"]);
     });
   });
