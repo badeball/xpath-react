@@ -17,7 +17,7 @@ XPath 1.0 expressions.
   * [render](#xpathutilsrender)
   * [find](#xpathutilsfind)
   * [Simulate.\<eventName\>](#xpathutilssimulateeventname)
-* [Known issues](#known-issues)
+* [Known issues & limitations](#known-issues--limitations)
 
 ## Installation
 
