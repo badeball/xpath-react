@@ -4,7 +4,7 @@
 
 A React adapter for [xpath-evaluator][xpath-evaluator]. Together with its
 dependencies, it allows you to query the internal DOM of [React][react] with
-XPath 1.0 expressions.
+XPath 1.0 expressions and thus testing it without a real DOM.
 
 ## Table of Contents
 
