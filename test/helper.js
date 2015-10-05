@@ -17,58 +17,39 @@ module.exports = {
     var match;
 
     for (var i = 0; i < result.snapshotLength; i++) {
-      var nodeIndex;
-
       if (result.snapshotItem(i).type) {
-        nodeIndex = nodes.findIndex(function (node) {
-          match = node.match(/(\w+)(?:#([^.]+))?(?:\.([\w\d-]+))?/);
+        match = nodes[i].match(/(\w+)(?:#([^.]+))?(?:\.([\w\d-]+))?/);
 
-          var tagName = match[1],
-              idName = match[2],
-              className = match[3];
+        var tagName = match[1],
+            idName = match[2],
+            className = match[3];
 
-          if (tagName && result.snapshotItem(i).type !== tagName) {
-            return false;
-          }
+        if (tagName) {
+          assert.equal(result.snapshotItem(i).type, tagName);
+        }
 
-          if (idName && result.snapshotItem(i).props.id !== idName) {
-            return false;
-          }
+        if (idName) {
+          assert.equal(result.snapshotItem(i).props.id, idName);
+        }
 
-          if (className && result.snapshotItem(i).props.className !== className) {
-            return false;
-          }
-
-          return true;
-        });
+        if (className) {
+          assert.equal(result.snapshotItem(i).props.className, className);
+        }
       } else {
-        nodeIndex = nodes.findIndex(function (node) {
-          match = node.match(/^(\w+)(?:\(([^\)]*)\))?$/);
+        match = nodes[i].match(/^(\w+)(?:\(([^\)]*)\))?$/);
 
-          var nodeType = match[1],
-              nodeValue = match[2];
+        var nodeType = match[1],
+            nodeValue = match[2];
 
-          if (nodeType !== "text") {
-            throw new Error("Unable to make assertions about anything other than text nodes");
-          }
+        if (nodeType !== "text") {
+          throw new Error("Unable to make assertions about anything other than text nodes");
+        }
 
-          if (result.snapshotItem(i) !== nodeValue) {
-            return false;
-          }
-
-          return true;
-        });
-      }
-
-      if (nodeIndex === -1) {
-        console.log(result.snapshotItem(i));
-        throw new Error("Unexpected node");
-      } else {
-        nodes.splice(nodeIndex, 1);
+        assert.equal(result.snapshotItem(i), nodeValue);
       }
     }
 
-    assert.deepEqual(nodes, []);
+    assert.equal(result.snapshotLength, nodes.length);
   },
 
   assertEvaluatesToValue: function (contextNode, expression, value) {
