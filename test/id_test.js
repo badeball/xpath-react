@@ -20,6 +20,8 @@ var document = (
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
+var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
+
 suite("XPathReact", function () {
   suite("id", function () {
     test("with unique id by function", function () {
@@ -36,6 +38,18 @@ suite("XPathReact", function () {
 
     test("with dupe id by attribute", function () {
       assertEvaluatesToNodeSet("//*[@id='dupeid']", ["div#dupeid", "div#dupeid"]);
+    });
+
+    test("with id by function in a attribute node context", function () {
+      assertEvaluatesToValue("boolean(//attribute::*[id('uniqueid')])", true);
+    });
+
+    test("with id by function in a text node context", function () {
+      assertEvaluatesToValue("boolean(//text()[id('uniqueid')])", true);
+    });
+
+    test("with id by function in a element node context", function () {
+      assertEvaluatesToValue("boolean(//child::*[id('uniqueid')])", true);
     });
   });
 });
