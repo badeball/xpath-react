@@ -14,6 +14,7 @@
   "devDependencies": {
     "babel": "5.8.23",
     "eslint": "0.24.1",
+    "istanbul": "0.3.22",
     "mocha": "2.3.0",
     "react": "0.13.3"
   },
