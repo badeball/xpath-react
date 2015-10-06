@@ -2,7 +2,7 @@
   "name": "xpath-react",
   "version": "2.0.0",
   "description": "A React adapter for xpath-evaluator.",
-  "main": "lib/xpath_react.js",
+  "main": "lib/types/react_document.js",
   "author": "Jonas Amundsen <jonasba@gmail.com>",
   "repository": {
     "type": "git",
