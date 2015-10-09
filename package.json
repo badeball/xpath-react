@@ -9,6 +9,7 @@
     "url": "git://github.com/badeball/xpath-react.git"
   },
   "dependencies": {
+    "react": "^0.13.3",
     "xpath-evaluator": "^2.0.0"
   },
   "devDependencies": {
@@ -16,8 +17,7 @@
     "codeclimate-test-reporter": "0.1.1",
     "eslint": "0.24.1",
     "istanbul": "0.3.22",
-    "mocha": "2.3.0",
-    "react": "0.13.3"
+    "mocha": "2.3.0"
   },
   "files": [
     "register.js",
