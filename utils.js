@@ -2,7 +2,7 @@
 
 "use strict";
 
-var TestUtils = require("react/addons").addons.TestUtils;
+var TestUtils = require("react-addons-test-utils");
 
 var XPath = require("./register");
 
