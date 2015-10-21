@@ -1,6 +1,6 @@
 {
   "name": "xpath-react",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "A React adapter for xpath-evaluator.",
   "main": "lib/types/react_document.js",
   "author": "Jonas Amundsen <jonasba@gmail.com>",
