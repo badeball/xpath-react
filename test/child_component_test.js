@@ -44,7 +44,7 @@ suite("XPathReact", function () {
       Assert.equal(result.singleNodeValue.type, Foo);
     });
 
-    test("00", function () {
+    test("01", function () {
       var document = XPathUtils.render(<Bar />);
 
       var expression = "string(.//Foo/parent::*)";
@@ -52,6 +52,26 @@ suite("XPathReact", function () {
       var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.STRING_TYPE);
 
       Assert.equal(result.stringValue, "Foo: ");
+    });
+
+    test("02", function () {
+      /* eslint-disable no-unused-vars */
+      function Qux () {
+        return "Hello world!";
+      }
+
+      function Norf () {
+        return <p><Qux /></p>;
+      }
+      /* eslint-enable no-unused-vars */
+
+      var document = XPathUtils.render(<Norf />);
+
+      var expression = ".//Qux";
+
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.ANY_UNORDERED_NODE_TYPE);
+
+      Assert.equal(result.singleNodeValue.type, Qux);
     });
   });
 });
