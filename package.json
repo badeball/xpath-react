@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.0",
     "xpath-evaluator": "^2.0.0"
   },
   "devDependencies": {
@@ -17,8 +18,7 @@
     "codeclimate-test-reporter": "0.1.1",
     "eslint": "0.24.1",
     "istanbul": "0.3.22",
-    "mocha": "2.3.0",
-    "react-addons-test-utils": "0.14.0"
+    "mocha": "2.3.0"
   },
   "files": [
     "register.js",
