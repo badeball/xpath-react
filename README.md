@@ -142,6 +142,25 @@ XPathUtils.find(output, "count(.//p)"); // => 1
 XPathUtils.find(output, "count(.//p) = 1"); // => true
 ```
 
+You can also use it to assert presence of unrendered child components, as shown
+below. This assumes that the child component has a `displayName` property.
+
+```javascript
+var Bar = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <Foo />
+      </div>
+    );
+  }
+});
+
+var output = XPathUtils.render(<Bar />);
+
+XPathUtils.find(output, "count(.//Foo)"); // => 1
+```
+
 ### XPathUtils.Simulate.{eventName}
 
 ```
