@@ -1,3 +1,5 @@
+"use strict";
+
 var babelify = require("babelify"),
     browserify = require("browserify"),
     express = require("express"),
@@ -6,11 +8,11 @@ var babelify = require("babelify"),
 var application = express();
 
 application.get("/application.js", function (request, response) {
-  browserify(path.join(__dirname + "/application.js")).transform(babelify).bundle().pipe(response);
+  browserify(path.join(__dirname, "application.js")).transform(babelify).bundle().pipe(response);
 });
 
 application.get("/", function (request, response) {
-  response.sendFile(path.join(__dirname + "/index.html"));
+  response.sendFile(path.join(__dirname, "index.html"));
 });
 
 application.listen(8080, function () {

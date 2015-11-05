@@ -1,3 +1,7 @@
+/* eslint-env browser */
+
+"use strict";
+
 var Benchmark = require("benchmark");
 
 var React = require("react");
@@ -12,6 +16,7 @@ var Suite = new Benchmark.Suite();
 
 var expression = ".//p[contains(., 'Hello world!')]";
 
+/* eslint-disable no-unused-vars */
 var Foo = React.createClass({
   render: function () {
     return (
@@ -21,13 +26,14 @@ var Foo = React.createClass({
     );
   }
 });
+/* eslint-enable no-unused-vars */
 
 Suite.
 
 add("document#evaluate", function () {
   var component = ReactDOM.findDOMNode(TestUtils.renderIntoDocument(<Foo />));
 
-  document.evaluate(expression, component, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  document.evaluate(expression, component, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 }).
 
 add("XPathReact#evaluate", function () {
@@ -35,7 +41,7 @@ add("XPathReact#evaluate", function () {
   renderer.render(<Foo />);
   var output = renderer.getRenderOutput();
 
-  XPathReact.evaluate(expression, output, null, XPathReact.XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  XPathReact.evaluate(expression, output, null, XPathReact.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 }).
 
 on("cycle", function(event) {
