@@ -22,7 +22,8 @@
     "eslint": "0.24.1",
     "express": "4.13.3",
     "istanbul": "0.3.22",
-    "mocha": "2.3.0"
+    "mocha": "2.3.0",
+    "react-dom": "0.14.0"
   },
   "files": [
     "register.js",
