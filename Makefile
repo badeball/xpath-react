@@ -13,6 +13,6 @@ test:
 	@$(MOCHA) --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
 test-cover:
-	@$(ISTANBUL) cover --report lcov $(MOCHA) -- --recursive --reporter dot --ui tdd --compilers js:babel/register
+	@$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
 .PHONY: lint test test-cover
