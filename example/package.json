@@ -5,7 +5,8 @@
     "chai-xpath-react": "badeball/chai-xpath-react",
     "eslint": "0.24.1",
     "mocha": "2.3.2",
-    "react": "0.13.3",
+    "react": "0.14.2",
+    "react-dom": "^0.14.2",
     "sinon": "1.16.1",
     "sinon-chai": "2.8.0",
     "xpath-react": "badeball/xpath-react"

@@ -1,17 +1,19 @@
 "use strict";
 
-var React = require("react");
+var ReactDOMServer = require("react-dom/server");
 
 var XPathUtils = require("xpath-react/utils");
 
 /* eslint-disable no-unused-vars */
+var React = require("react");
+
 var List = require("../lib/list_component");
 /* eslint-enable no-unused-vars */
 
 describe("ListComponent", function () {
   describe("when isLoading is true", function () {
     it("should render a loading text", function () {
-      var rendering = React.renderToString(<List isLoading={true} />);
+      var rendering = ReactDOMServer.renderToString(<List isLoading={true} />);
 
       rendering.should.include("Loading items..");
     });
