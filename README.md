@@ -34,11 +34,9 @@ $ npm install xpath-react
 The library provides a basic `evaluate` method that you might commonly know as
 [Document.evaluate][document-evaluate]. Additionally, three convenience method
 exist to make usage more practical, as `evaluate` is a bit cumbersome. A
-practical example can be found in [example/][example]. You may also find a blog
-post about it [here][blog], which also contains some examples.
+practical example can be found in [example/][example].
 
 [example]: example/
-[blog]: http://badeball.github.io/2015/09/29/unit-testing-react-components-with-xpath.html
 
 ### XPath.evaluate
 
