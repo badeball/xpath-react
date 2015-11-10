@@ -45,11 +45,11 @@ add("XPathReact#evaluate", function () {
 }).
 
 on("cycle", function(event) {
-  console.log(String(event.target));
+  document.write(String(event.target) + "\n");
 }).
 
 on("complete", function() {
-  console.log("Fastest is " + this.filter("fastest").pluck("name"));
+  document.write("Fastest is " + this.filter("fastest").pluck("name") + "\n");
 }).
 
 run({async: true});
