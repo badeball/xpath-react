@@ -34,7 +34,7 @@ var Bar = React.createClass({
 
 suite("XPathReact", function () {
   suite("child component", function () {
-    test("00", function () {
+    test("unrendered child component", function () {
       var document = XPathUtils.render(<Bar />);
 
       var expression = ".//Foo";
@@ -44,7 +44,7 @@ suite("XPathReact", function () {
       Assert.equal(result.singleNodeValue.type, Foo);
     });
 
-    test("01", function () {
+    test("unrendered child component (complex)", function () {
       var document = XPathUtils.render(<Bar />);
 
       var expression = "string(.//Foo/parent::*)";
@@ -54,7 +54,7 @@ suite("XPathReact", function () {
       Assert.equal(result.stringValue, "Foo: ");
     });
 
-    test("02", function () {
+    test("unrendered child component (functional component)", function () {
       /* eslint-disable no-unused-vars */
       function Qux () {
         return "Hello world!";
