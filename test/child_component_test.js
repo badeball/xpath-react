@@ -73,5 +73,28 @@ suite("XPathReact", function () {
 
       Assert.equal(result.singleNodeValue.type, Qux);
     });
+
+    test("two-dimensional child components", function () {
+      /* eslint-disable no-unused-vars */
+      function Qux () {
+        return (
+          <div>
+            <p />
+            {[1, 2, 3].map(function (number) {
+              return <p key={number} />;
+            })}
+          </div>
+        );
+      }
+      /* eslint-enable no-unused-vars */
+
+      var document = XPathUtils.render(<Qux />);
+
+      var expression = "count(//p)";
+
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.NUMBER_TYPE);
+
+      Assert.equal(result.numberValue, 4);
+    });
   });
 });
