@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 "use strict";
 
 var TestUtils = require("react-addons-test-utils");
