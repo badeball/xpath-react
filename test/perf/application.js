@@ -16,7 +16,6 @@ var Suite = new Benchmark.Suite();
 
 var expression = ".//p[contains(., 'Hello world!')]";
 
-/* eslint-disable no-unused-vars */
 var Foo = React.createClass({
   render: function () {
     return (
@@ -26,7 +25,6 @@ var Foo = React.createClass({
     );
   }
 });
-/* eslint-enable no-unused-vars */
 
 Suite.
 

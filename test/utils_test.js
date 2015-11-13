@@ -4,7 +4,6 @@ var Assert = require("assert");
 
 var XPathUtils = require("../utils");
 
-/* eslint-disable no-unused-vars */
 var React = require("react");
 
 var Foo = React.createClass({
@@ -23,7 +22,6 @@ var Foo = React.createClass({
     );
   }
 });
-/* eslint-enable no-unused-vars */
 
 describe("XPathReact", function () {
   describe("Utils", function () {

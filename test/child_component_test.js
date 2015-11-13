@@ -6,7 +6,6 @@ var XPathEvaluator = require("../register");
 
 var XPathUtils = require("../utils");
 
-/* eslint-disable no-unused-vars */
 var React = require("react");
 
 var Foo = React.createClass({
@@ -28,7 +27,6 @@ var Bar = React.createClass({
     );
   }
 });
-/* eslint-enable no-unused-vars */
 
 suite("XPathReact", function () {
   suite("child component", function () {
@@ -53,7 +51,6 @@ suite("XPathReact", function () {
     });
 
     test("unrendered child component (functional component)", function () {
-      /* eslint-disable no-unused-vars */
       function Qux () {
         return "Hello world!";
       }
@@ -61,7 +58,6 @@ suite("XPathReact", function () {
       function Norf () {
         return <p><Qux /></p>;
       }
-      /* eslint-enable no-unused-vars */
 
       var document = XPathUtils.render(<Norf />);
 
@@ -73,7 +69,6 @@ suite("XPathReact", function () {
     });
 
     test("two-dimensional child components", function () {
-      /* eslint-disable no-unused-vars */
       function Qux () {
         return (
           <div>
@@ -84,7 +79,6 @@ suite("XPathReact", function () {
           </div>
         );
       }
-      /* eslint-enable no-unused-vars */
 
       var document = XPathUtils.render(<Qux />);
 
