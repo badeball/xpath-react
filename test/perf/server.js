@@ -16,5 +16,7 @@ application.get("/", function (request, response) {
 });
 
 application.listen(8080, function () {
+  /* eslint-disable no-console */
   console.log("listening on port 8080");
+  /* eslint-enable no-console */
 });
