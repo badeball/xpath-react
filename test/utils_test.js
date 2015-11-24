@@ -79,15 +79,17 @@ describe("XPathReact", function () {
       it("should invoke the event handler of an element", function () {
         var wasInvoked = false;
 
-        var onClick = function () {
-          wasInvoked = true;
+        var onClick = function (e) {
+          if (e.foo === "bar") {
+            wasInvoked = true;
+          }
         };
 
         var output = XPathUtils.render(<Foo onClick={onClick} />);
 
         var button = XPathUtils.find(output, ".//button");
 
-        XPathUtils.Simulate.click(button);
+        XPathUtils.Simulate.click(button, {foo: "bar"});
 
         Assert.equal(wasInvoked, true);
       });
