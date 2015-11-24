@@ -164,11 +164,14 @@ XPathUtils.find(output, "count(.//Foo)"); // => 1
 ```
 XPathUtils.Simulate.{eventName} (
   ReactElement element,
+  [DOMString expression],
   [Object eventData]
 )
 ```
 
-Invokes the event handler of an element with optional event data.
+Invokes the event handler of an element with optional event data. It also
+accepts an expression argument, where which the matching element's event
+handler will be invoked.
 
 ##### Example
 
@@ -191,11 +194,13 @@ var onClick = Sinon.spy();
 
 var output = XPathUtils.render(<Foo onClick={onClick} />);
 
+XPathUtils.Simulate.click(output, ".//button[contains(., 'Hello world!')]");
+
 var button = XPathUtils.find(output, ".//button[contains(., 'Hello world!')]");
 
 XPathUtils.Simulate.click(button);
 
-onClick.should.have.been.called;
+onClick.should.have.been.calledTwice;
 ```
 
 ## Known issues & limitations

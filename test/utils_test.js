@@ -76,32 +76,60 @@ describe("XPathReact", function () {
     });
 
     describe("Simulate.<event>()", function () {
-      it("should invoke the event handler of an element", function () {
-        var wasInvoked = false;
+      describe("when provided with a React element", function () {
+        it("should invoke the event handler of the element", function () {
+          var wasInvoked = false;
 
-        var onClick = function (e) {
-          if (e.foo === "bar") {
-            wasInvoked = true;
-          }
-        };
+          var onClick = function (e) {
+            if (e.foo === "bar") {
+              wasInvoked = true;
+            }
+          };
 
-        var output = XPathUtils.render(<Foo onClick={onClick} />);
-
-        var button = XPathUtils.find(output, ".//button");
-
-        XPathUtils.Simulate.click(button, {foo: "bar"});
-
-        Assert.equal(wasInvoked, true);
-      });
-
-      it("should throw an error when no event handler is present", function () {
-        Assert.throws(function () {
-          var output = XPathUtils.render(<Foo />);
+          var output = XPathUtils.render(<Foo onClick={onClick} />);
 
           var button = XPathUtils.find(output, ".//button");
 
-          XPathUtils.Simulate.mouseDown(button);
-        }, /No event handler for onMouseDown/);
+          XPathUtils.Simulate.click(button, {foo: "bar"});
+
+          Assert.equal(wasInvoked, true);
+        });
+
+        it("should throw an error when no event handler is present", function () {
+          Assert.throws(function () {
+            var output = XPathUtils.render(<Foo />);
+
+            var button = XPathUtils.find(output, ".//button");
+
+            XPathUtils.Simulate.mouseDown(button);
+          }, /No event handler for onMouseDown/);
+        });
+      });
+
+      describe("when also provided with an XPath expression", function () {
+        it("should invoke the event handler of the matching element", function () {
+          var wasInvoked = false;
+
+          var onClick = function (e) {
+            if (e.foo === "bar") {
+              wasInvoked = true;
+            }
+          };
+
+          var output = XPathUtils.render(<Foo onClick={onClick} />);
+
+          XPathUtils.Simulate.click(output, ".//button", {foo: "bar"});
+
+          Assert.equal(wasInvoked, true);
+        });
+
+        it("should throw an error when no event handler is present", function () {
+          Assert.throws(function () {
+            var output = XPathUtils.render(<Foo />);
+
+            XPathUtils.Simulate.mouseDown(output, ".//button");
+          }, /No event handler for onMouseDown/);
+        });
       });
     });
   });

@@ -45,9 +45,7 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} items={items} onRemove={onRemove} />);
 
-      var deleteButton = XPathUtils.find(element, ".//button[contains(., 'Delete')]");
-
-      XPathUtils.Simulate.click(deleteButton);
+      XPathUtils.Simulate.click(element, ".//button[contains(., 'Delete')]");
 
       onRemove.should.have.been.calledWith(0);
     });
@@ -71,9 +69,7 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} onAdd={onAdd} formValue="foo" />);
 
-      var addButton = XPathUtils.find(element, ".//button[contains(., 'Add')]");
-
-      XPathUtils.Simulate.click(addButton);
+      XPathUtils.Simulate.click(element, ".//button[contains(., 'Add')]");
 
       onAdd.should.have.been.calledWith("foo");
     });

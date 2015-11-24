@@ -36,7 +36,13 @@ module.exports = {
   },
 
   Simulate: Object.keys(TestUtils.Simulate).reduce(function (simulate, event) {
-    simulate[event] = function (element, eventData) {
+    simulate[event] = function (element, expression, eventData) {
+      if (typeof expression === "string") {
+        element = module.exports.find(element, expression);
+      } else {
+        eventData = expression;
+      }
+
       var eventName = "on" + event.charAt(0).toUpperCase() + event.slice(1);
 
       if (element.props[eventName]) {
