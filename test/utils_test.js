@@ -73,6 +73,14 @@ describe("XPathReact", function () {
 
         Assert.equal(hasBarButton, true);
       });
+
+      it("should throw an error when provided something other than a React element", function () {
+        Assert.throws(function () {
+          var notReactElement = {foo: "bar"};
+
+          XPathUtils.find(notReactElement, "/*");
+        }, /Expected a React element/);
+      });
     });
 
     describe("Simulate.<event>()", function () {
