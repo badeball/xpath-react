@@ -9,8 +9,8 @@
     "url": "git://github.com/badeball/xpath-react.git"
   },
   "dependencies": {
-    "react": "^0.14.0",
-    "react-addons-test-utils": "^0.14.0",
+    "react": "^0.14.6",
+    "react-addons-test-utils": "^0.14.6",
     "xpath-evaluator": "^2.0.0"
   },
   "devDependencies": {
@@ -24,7 +24,7 @@
     "express": "4.13.3",
     "istanbul": "0.3.22",
     "mocha": "2.3.0",
-    "react-dom": "0.14.0"
+    "react-dom": "0.14.6"
   },
   "files": [
     "register.js",
