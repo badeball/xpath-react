@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git://github.com/badeball/xpath-react.git"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.14.6",
     "react-addons-test-utils": "^0.14.6",
     "xpath-evaluator": "^2.0.0"
