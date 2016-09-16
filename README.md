@@ -29,6 +29,13 @@ The package can be installed with `npm`.
 $ npm install xpath-react
 ```
 
+A couple peer dependencies is expected to be available. The library is
+compatible with both react-0.14.x and react-15.x.x.
+
+```
+$ npm install xpath-evaluator react react-addons-test-utils
+```
+
 ## Usage
 
 The library provides a basic `evaluate` method that you might commonly know as
