@@ -4,10 +4,7 @@ var Assert = require("assert");
 
 var XPathUtils = require("../utils");
 
-var Helper = require("./helper");
-
 var React = require("react");
-var ReactTestUtils = require("react-addons-test-utils");
 
 var Foo = React.createClass({
   propTypes: {

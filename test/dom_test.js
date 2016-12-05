@@ -53,7 +53,7 @@ describe("XPathReact", function () {
       var div = document.createElement("div");
       document.body.appendChild(div);
 
-      var eldiv = <div><B key="1" /><B key="2" /><B key="3" /></div>
+      var eldiv = <div><B key="1" /><B key="2" /><B key="3" /></div>;
       var el = React.createElement(A, { content: eldiv });
       ReactDom.render(el, div);
       
