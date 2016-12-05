@@ -86,9 +86,9 @@ var XPathUtils = {
     }
   },
 
-  findReactRoot: function(path) {
-    var xpath = path || '//*[@data-reactroot]';
-    var xpathResult = document.evaluate(xpath, document, null, XPathEvaluator.XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+  findReactRoot: function(path, element) {
+    var xpath = path || './/*[@data-reactroot]';
+    var xpathResult = window.document.evaluate(xpath, element || window.document.documentElement, null, XPathEvaluator.XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
     if (xpathResult.snapshotLength == 0) {
         throw 'No react application root was found with path ' + xpath;
     } else if (xpathResult.snapshotLength > 1) {

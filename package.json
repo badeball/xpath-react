@@ -18,6 +18,7 @@
     "eslint": "1.9.0",
     "eslint-plugin-react": "3.8.0",
     "istanbul": "0.3.22",
+    "jsdom": "9.8.3",
     "mocha": "2.3.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
@@ -29,7 +30,8 @@
     "lib"
   ],
   "scripts": {
-    "test": "mocha ./test/**/*_test.js --ui tdd --compilers js:babel/register --reporter spec"
+    "test": "mocha --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js",
+    "test-cover": "istanbul cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js"
   },
   "license": "MIT"
 }
