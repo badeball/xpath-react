@@ -66,9 +66,10 @@ var XPathUtils = {
     switch (result.resultType) {
       case XPathEvaluator.XPathResult.UNORDERED_NODE_ITERATOR_TYPE:
         var results = [];
-        var el;
-        while (el = result.iterateNext()) {
+        var el = result.iterateNext();
+        while (el) {
           results.push(el);
+          el = result.iterateNext();
         }
         if (results.length > 1) {
           throw "Found multiple results with expression" + expression;
