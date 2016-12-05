@@ -4,6 +4,8 @@ var Assert = require("assert");
 
 var XPathUtils = require("../utils");
 
+var Helper = require("./helper");
+
 var React = require("react");
 
 var Foo = React.createClass({
@@ -27,7 +29,7 @@ describe("XPathReact", function () {
   describe("Utils", function () {
     describe("render()", function () {
       it("should create a shallow rendering of a component", function () {
-        var output = Helper.render(<Foo />);
+        var output = \.render(<Foo />);
 
         Assert.equal(output.props.children[0].props.children, "Hello world!");
       });

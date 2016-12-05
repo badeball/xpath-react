@@ -5,5 +5,5 @@ engines:
 ratings:
   paths:
     - lib/**
-    - register.js
+    - index.js
     - utils.js

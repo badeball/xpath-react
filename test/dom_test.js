@@ -4,16 +4,13 @@ var Assert = require("assert");
 
 var XPathUtils = require("../utils");
 
-var Helper = require("./helper");
-
 var React = require("react");
-var ReactDom = require('react-dom');
-var ReactTestUtils = require("react-addons-test-utils");
+var ReactDom = require("react-dom");
 
-var jsdom = require('jsdom');
+var jsdom = require("jsdom");
 
 function initDOM() {
-  global.document = jsdom.jsdom('');
+  global.document = jsdom.jsdom("");
   global.window = document.defaultView;
   global.navigator = window.navigator;
 }
@@ -57,7 +54,7 @@ describe("XPathReact", function () {
       var el = React.createElement(A, { content: eldiv });
       ReactDom.render(el, div);
       
-      var p = XPathUtils.find(XPathUtils.findReactRoot(), './/B[@key="1"]');
+      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//B[@key='1']');
       Assert.equal(p.type, B);
     });
 
@@ -71,10 +68,10 @@ describe("XPathReact", function () {
       var el = React.createElement(A, { content: React.createElement(B) });
       ReactDom.render(el, div);
       
-      var p = XPathUtils.find(XPathUtils.findReactRoot(), './/input[@type="text"]');
-      Assert.equal(p.tagName, 'INPUT');
-      Assert.equal(p.type, 'text');
-      Assert.equal(p.name, 'test');
+      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//input[@type='text']);
+      Assert.equal(p.tagName, "INPUT");
+      Assert.equal(p.type, "text");
+      Assert.equal(p.name, "test");
     });
 
   });
