@@ -4,33 +4,39 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <head>
-      <title>Title</title>
-      <link rel='index' href='http://coderepos.org/' type='text/html' />
-    </head>
-    <body>
-      <blockquote
-          title='CodeRepos'
-          cite='http://coderepos.org/'>
-        <p title='paragraph' id='paragraph'>
-          <br id='pSib' />
-          <input name='foo' id='bar' className='input-1' />
-          <input name='bar' id='foo' className='input-2' />
-          <img name='hoge' id='fuga' className='img-1' />
-          <img name='fuga' id='hoge' className='img-2' />
-          <br id='nSib' />
-          Share your codes!
-          <input htmlFor='foo' />
-        </p>
-        <cite className='cite site'>
-          <a title='CodeRepos' href='http://coderepos.org/'>CodeRepos</a>
-        </cite>
-      </blockquote>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <title>Title</title>
+          <link rel='index' href='http://coderepos.org/' type='text/html' />
+        </head>
+        <body>
+          <blockquote
+              title='CodeRepos'
+              cite='http://coderepos.org/'>
+            <p title='paragraph' id='paragraph'>
+              <br id='pSib' />
+              <input name='foo' id='bar' className='input-1' />
+              <input name='bar' id='foo' className='input-2' />
+              <img name='hoge' id='fuga' className='img-1' />
+              <img name='fuga' id='hoge' className='img-2' />
+              <br id='nSib' />
+              Share your codes!
+              <input htmlFor='foo' />
+            </p>
+            <cite className='cite site'>
+              <a title='CodeRepos' href='http://coderepos.org/'>CodeRepos</a>
+            </cite>
+          </blockquote>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

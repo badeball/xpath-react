@@ -4,16 +4,22 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <head>
-      <title>title</title>
-    </head>
-    <body>
-      <div><span id='first' className='1'></span>foo<span className='2'></span>bar<span className='3'></span>baz<span id='last' className='4'></span></div>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <title>title</title>
+        </head>
+        <body>
+          <div><span id='first' className='1'></span>foo<span className='2'></span>bar<span className='3'></span>baz<span id='last' className='4'></span></div>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

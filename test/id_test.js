@@ -4,15 +4,21 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <body>
-      <div id='dupeid'>My id is dupeid</div>
-      <div id='dupeid'>My id is also dupeid</div>
-      <div id='uniqueid'>My id is uniqueid</div>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <body>
+          <div id='dupeid'>My id is dupeid</div>
+          <div id='dupeid'>My id is also dupeid</div>
+          <div id='uniqueid'>My id is uniqueid</div>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

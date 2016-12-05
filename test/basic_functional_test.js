@@ -4,46 +4,52 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <div id='n1' title='1' className='26'>
-    <dl id='n2' title='2' className='3'>
-      <dt id='n3' title='3' className='1'>dt</dt>
-      <dd id='n4' title='4' className='2'>dd</dd>
-    </dl>
-    <center id='n5' title='5' className='22'>
-      <h1 id='n6' title='6' className='6'>
-        <em id='n7' title='7' className='4'>em</em>
-        <strong id='n8' title='8' className='5'>strong</strong>
-      </h1>
-      <h2 id='n9' title='9' className='9'>
-        <b id='n10' title='10' className='7'>b</b>
-        <s id='n11' title='11' className='8'>s</s>
-      </h2>
-      <blockquote id='n12' title='12' className='15'>
-        blockquoteText1:
-        <br id='n13' title='13' className='10'/>
-        blockquoteText2
-        <p id='n14' title='14' className='13'>
-          <del id='n15' title='15' className='11'>del</del>
-          <ins id='n16' title='16' className='12'>ins</ins>
-        </p>
-        <font id='n17' title='17' className='14' face='n8 n26'>font</font>
-      </blockquote>
-      <h3 id='n18' title='18' className='18'>
-        <dfn id='n19' title='19' className='16'>dfn</dfn>
-        <a id='n20' title='20' className='17'>a</a>
-      </h3>
-      <h4 id='n21' title='21' className='21'>
-        <sub id='n22' title='22' className='19'>sub</sub>
-        <sup id='n23' title='23' className='20'>sup</sup>
-      </h4>
-    </center>
-    <span id='n24' title='24' className='25'>
-      <acronym id='n25' title='25' className='23'>acronym</acronym>
-      <q id='n26' title='26' className='24' cite='n8 n17'>q</q>
-    </span>
-  </div>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <div id='n1' title='1' className='26'>
+        <dl id='n2' title='2' className='3'>
+          <dt id='n3' title='3' className='1'>dt</dt>
+          <dd id='n4' title='4' className='2'>dd</dd>
+        </dl>
+        <center id='n5' title='5' className='22'>
+          <h1 id='n6' title='6' className='6'>
+            <em id='n7' title='7' className='4'>em</em>
+            <strong id='n8' title='8' className='5'>strong</strong>
+          </h1>
+          <h2 id='n9' title='9' className='9'>
+            <b id='n10' title='10' className='7'>b</b>
+            <s id='n11' title='11' className='8'>s</s>
+          </h2>
+          <blockquote id='n12' title='12' className='15'>
+            blockquoteText1:
+            <br id='n13' title='13' className='10'/>
+            blockquoteText2
+            <p id='n14' title='14' className='13'>
+              <del id='n15' title='15' className='11'>del</del>
+              <ins id='n16' title='16' className='12'>ins</ins>
+            </p>
+            <font id='n17' title='17' className='14' face='n8 n26'>font</font>
+          </blockquote>
+          <h3 id='n18' title='18' className='18'>
+            <dfn id='n19' title='19' className='16'>dfn</dfn>
+            <a id='n20' title='20' className='17'>a</a>
+          </h3>
+          <h4 id='n21' title='21' className='21'>
+            <sub id='n22' title='22' className='19'>sub</sub>
+            <sup id='n23' title='23' className='20'>sup</sup>
+          </h4>
+        </center>
+        <span id='n24' title='24' className='25'>
+          <acronym id='n25' title='25' className='23'>acronym</acronym>
+          <q id='n26' title='26' className='24' cite='n8 n17'>q</q>
+        </span>
+      </div>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

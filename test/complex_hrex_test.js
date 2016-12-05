@@ -5,18 +5,24 @@ var React = require("react");
 var Helper = require("./helper");
 
 /* eslint-disable no-script-url */
-var document = (
-  <html>
-    <body>
-      <a id='id0-0' href='javascript:doFoo(a, b)'>foo</a>
-      <a id='id0-1' href='javascript:doFoo(a, %20b)'>foo</a>
-      <a id='id0-2' href='javascript:doFoo(%61, %20b)'>foo</a>
-      <a id='id1-0' href='http://example.com/a b'>foo</a>
-      <a id='id1-1' href='http://example.com/a%20b'>foo</a>
-      <a id='id1-2' href='http://example.com/%61%20b'>foo</a>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <body>
+          <a id='id0-0' href='javascript:doFoo(a, b)'>foo</a>
+          <a id='id0-1' href='javascript:doFoo(a, %20b)'>foo</a>
+          <a id='id0-2' href='javascript:doFoo(%61, %20b)'>foo</a>
+          <a id='id1-0' href='http://example.com/a b'>foo</a>
+          <a id='id1-1' href='http://example.com/a%20b'>foo</a>
+          <a id='id1-2' href='http://example.com/%61%20b'>foo</a>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 /* eslint-ena enable no-script-url */
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);

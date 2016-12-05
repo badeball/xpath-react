@@ -4,27 +4,33 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <head>
-      <title>Title</title>
-    </head>
-    <body>
-      <ul id='container'>
-        <li id='li-1'></li>
-        <li id='li-2'></li>
-        <li id='li-3'></li>
-        <li id='li-4'></li>
-      </ul>
-      <ul id='container-0'>
-        <li id='li-5'></li>
-        <li id='li-6'></li>
-        <li id='li-7'></li>
-        <li id='li-8'></li>
-      </ul>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <title>Title</title>
+        </head>
+        <body>
+          <ul id='container'>
+            <li id='li-1'></li>
+            <li id='li-2'></li>
+            <li id='li-3'></li>
+            <li id='li-4'></li>
+          </ul>
+          <ul id='container-0'>
+            <li id='li-5'></li>
+            <li id='li-6'></li>
+            <li id='li-7'></li>
+            <li id='li-8'></li>
+          </ul>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

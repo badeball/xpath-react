@@ -1,8 +1,8 @@
 {
   "name": "xpath-react",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "A React adapter for xpath-evaluator.",
-  "main": "lib/types/react_document.js",
+  "main": "index.js",
   "author": "Jonas Amundsen <jonasba@gmail.com>",
   "repository": {
     "type": "git",
@@ -10,7 +10,6 @@
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
-    "react-addons-test-utils": "^0.14.0 || ^15.0.0",
     "xpath-evaluator": "^2.0.0"
   },
   "devDependencies": {
@@ -19,12 +18,18 @@
     "eslint": "1.9.0",
     "eslint-plugin-react": "3.8.0",
     "istanbul": "0.3.22",
-    "mocha": "2.3.0"
+    "mocha": "2.3.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-addons-test-utils": "15.4.1"
   },
   "files": [
-    "register.js",
+    "index.js",
     "utils.js",
     "lib"
   ],
+  "scripts": {
+    "test": "mocha ./test/**/*_test.js --ui tdd --compilers js:babel/register --reporter spec"
+  },
   "license": "MIT"
 }

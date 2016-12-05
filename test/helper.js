@@ -5,12 +5,17 @@
 "use strict";
 
 var assert = require("assert");
-
-var XPathEvaluator = require("../register");
+var ReactTestUtils = require("react-addons-test-utils");
+var XPathEvaluator = require("../index");
 
 var XPathResult = XPathEvaluator.XPathResult;
 
 module.exports = {
+  render: function(el) {
+    var shallowRenderer = ReactTestUtils.createRenderer();
+    return shallowRenderer.render(el);
+  },
+
   assertEvaluatesToNodeSet: function (contextNode, expression, nodes) {
     var result = XPathEvaluator.evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
 

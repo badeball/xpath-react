@@ -4,32 +4,38 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <head>
-      <title>title</title>
-    </head>
-    <body>
-      <select id='target'>
-        <option>foo</option>
-        <option>bar</option>
-        <option>baz</option>
-      </select>
-      <div>
-        <select name='target2' id='a'>
-          <option>foo</option>
-          <option>bar</option>
-          <option>baz</option>
-        </select>
-        <select name='target2' id='b'>
-          <option>foo</option>
-          <option>bar</option>
-          <option>baz</option>
-        </select>
-      </div>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <title>title</title>
+        </head>
+        <body>
+          <select id='target'>
+            <option>foo</option>
+            <option>bar</option>
+            <option>baz</option>
+          </select>
+          <div>
+            <select name='target2' id='a'>
+              <option>foo</option>
+              <option>bar</option>
+              <option>baz</option>
+            </select>
+            <select name='target2' id='b'>
+              <option>foo</option>
+              <option>bar</option>
+              <option>baz</option>
+            </select>
+          </div>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

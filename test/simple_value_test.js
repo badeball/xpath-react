@@ -4,26 +4,32 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <head>
-      <title>Title</title>
-    </head>
-    <body>
-      <div>
-        <span id='a'>hoge</span>
-        <span id='b'>3</span>
-      </div>
-      <ol id='numbers'>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-      </ol>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <title>Title</title>
+        </head>
+        <body>
+          <div>
+            <span id='a'>hoge</span>
+            <span id='b'>3</span>
+          </div>
+          <ol id='numbers'>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+          </ol>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var DOCUMENT_AS_STRING = "Titlehoge312345";
 

@@ -4,47 +4,53 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <body>
-      <div id='id1'>foo</div>
-      <div id='id2'>bar</div>
-      <div id='id3'>baz</div>
-      <div id='id4'>
-        <div id='id4-1'>foo</div>
-        <div id='id4-2'>bar</div>
-        <div id='id4-3'>baz</div>
-      </div>
-      <table>
-        <tbody>
-          <tr id='id5'>
-            <td>1</td> <td>2</td>
-          </tr>
-          <tr id='id6'>
-            <td>1</td> <td>2</td>
-          </tr>
-          <tr id='id7'>
-            <td>1</td> <td>2</td>
-          </tr>
-        </tbody>
-      </table>
-      <table>
-        <tbody>
-          <tr id='id8'>
-            <td>1</td> <td>2</td>
-          </tr>
-          <tr id='id9'>
-            <td>1</td> <td>2</td>
-          </tr>
-          <tr id='id0'>
-            <td>1</td> <td>2</td>
-          </tr>
-        </tbody>
-      </table>
-      <p id='ppp'>1</p>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <body>
+          <div id='id1'>foo</div>
+          <div id='id2'>bar</div>
+          <div id='id3'>baz</div>
+          <div id='id4'>
+            <div id='id4-1'>foo</div>
+            <div id='id4-2'>bar</div>
+            <div id='id4-3'>baz</div>
+          </div>
+          <table>
+            <tbody>
+              <tr id='id5'>
+                <td>1</td> <td>2</td>
+              </tr>
+              <tr id='id6'>
+                <td>1</td> <td>2</td>
+              </tr>
+              <tr id='id7'>
+                <td>1</td> <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <tbody>
+              <tr id='id8'>
+                <td>1</td> <td>2</td>
+              </tr>
+              <tr id='id9'>
+                <td>1</td> <td>2</td>
+              </tr>
+              <tr id='id0'>
+                <td>1</td> <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+          <p id='ppp'>1</p>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 
