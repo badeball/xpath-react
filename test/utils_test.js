@@ -29,7 +29,7 @@ describe("XPathReact", function () {
   describe("Utils", function () {
     describe("render()", function () {
       it("should create a shallow rendering of a component", function () {
-        var output = \.render(<Foo />);
+        var output = Helper.render(<Foo />);
 
         Assert.equal(output.props.children[0].props.children, "Hello world!");
       });

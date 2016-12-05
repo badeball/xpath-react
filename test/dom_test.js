@@ -54,7 +54,7 @@ describe("XPathReact", function () {
       var el = React.createElement(A, { content: eldiv });
       ReactDom.render(el, div);
       
-      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//B[@key='1']');
+      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//B[@key='1']");
       Assert.equal(p.type, B);
     });
 
@@ -68,7 +68,7 @@ describe("XPathReact", function () {
       var el = React.createElement(A, { content: React.createElement(B) });
       ReactDom.render(el, div);
       
-      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//input[@type='text']);
+      var p = XPathUtils.find(XPathUtils.findReactRoot(), ".//input[@type='text']");
       Assert.equal(p.tagName, "INPUT");
       Assert.equal(p.type, "text");
       Assert.equal(p.name, "test");
