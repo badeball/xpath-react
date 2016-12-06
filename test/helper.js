@@ -13,7 +13,8 @@ var XPathResult = XPathEvaluator.XPathResult;
 module.exports = {
   render: function(el) {
     var shallowRenderer = ReactTestUtils.createRenderer();
-    return shallowRenderer.render(el);
+    shallowRenderer.render(el);
+    return shallowRenderer.getRenderOutput()
   },
 
   assertEvaluatesToNodeSet: function (contextNode, expression, nodes) {
