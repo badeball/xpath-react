@@ -15,7 +15,7 @@ function initDOM() {
   global.navigator = window.navigator;
 }
 
-if (React.version.charAt(0) !== '0') {
+if (React.version.charAt(0) !== "0") {
 
   var Wrapper = React.createClass({
     render: function () {

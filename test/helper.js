@@ -14,7 +14,7 @@ module.exports = {
   render: function(el) {
     var shallowRenderer = ReactTestUtils.createRenderer();
     shallowRenderer.render(el);
-    return shallowRenderer.getRenderOutput()
+    return shallowRenderer.getRenderOutput();
   },
 
   assertEvaluatesToNodeSet: function (contextNode, expression, nodes) {
