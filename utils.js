@@ -12,7 +12,7 @@ var ALL_EVENTS = {
   keypress: "onKeyPress",
   contextmenu: "onContextMenu",
   dblclick: "onDoubleClick",
-  doubleclick: "onDoubleClick", // kept for legacy. TODO: remove with next major.
+  doubleclick: "onDoubleClick",
   dragend: "onDragEnd",
   dragenter: "onDragEnter",
   dragexist: "onDragExit",

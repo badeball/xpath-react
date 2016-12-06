@@ -19,33 +19,33 @@ module.exports = {
 
   assertEvaluatesToNodeSet: function (contextNode, expression, nodes) {
     var result = XPathEvaluator.evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
-
     var match;
 
     for (var i = 0; i < result.snapshotLength; i++) {
-      if (result.snapshotItem(i).type) {
+      if (result.snapshotItem(i).type || result.snapshotItem(i).tagName) {
         match = nodes[i].match(/(\w+)(?:#([^.]+))?(?:\.([\w\d-]+))?/);
 
-        var tagName = match[1],
-            idName = match[2],
-            className = match[3];
+        var tagName = match[1];
+        var idName = match[2];
+        var className = match[3];
 
         if (tagName) {
-          assert.equal(result.snapshotItem(i).type, tagName);
+          assert.equal(result.snapshotItem(i).tagName && result.snapshotItem(i).tagName.toLowerCase() 
+                       || result.snapshotItem(i).type && (result.snapshotItem(i).type.displayName || result.snapshotItem(i).type.name || result.snapshotItem(i).type), 
+                       tagName);
         }
-
         if (idName) {
-          assert.equal(result.snapshotItem(i).props.id, idName);
+          assert.equal(result.snapshotItem(i).id || result.snapshotItem(i).props && result.snapshotItem(i).props.id, idName);
+        }
+        if (className) {
+          assert.equal(result.snapshotItem(i).className || result.snapshotItem(i).props && result.snapshotItem(i).props.className, className);
         }
 
-        if (className) {
-          assert.equal(result.snapshotItem(i).props.className, className);
-        }
       } else {
         match = nodes[i].match(/^(\w+)(?:\(([^\)]*)\))?$/);
 
-        var nodeType = match[1],
-            nodeValue = match[2];
+        var nodeType = match[1];
+        var nodeValue = match[2];
 
         if (nodeType !== "text") {
           throw new Error("Unable to make assertions about anything other than text nodes");
@@ -60,7 +60,6 @@ module.exports = {
 
   assertEvaluatesToValue: function (contextNode, expression, value) {
     var result = XPathEvaluator.evaluate(expression, contextNode, null, XPathResult.ANY_TYPE);
-
     switch (result.resultType) {
       case XPathResult.NUMBER_TYPE:
         assert.equal(value, result.numberValue);
