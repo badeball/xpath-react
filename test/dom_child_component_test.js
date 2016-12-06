@@ -7,8 +7,6 @@ var XPathEvaluator = require("../index");
 var React = require("react");
 var ReactDom = require("react-dom");
 
-var Helper = require("./helper");
-
 var jsdom = require("jsdom");
 
 function initDOM() {
