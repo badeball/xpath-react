@@ -41,8 +41,6 @@ var ALL_EVENTS = {
   volumechange: "onVolumeChange"
 };
 
-var REACT_15_ROOT_XPATH = ".//*[@data-reactroot]";
-
 function handlerNameFromEvent(event) {
   return ALL_EVENTS[event] || "on" + event.charAt(0).toUpperCase() + event.slice(1);
 }
@@ -56,7 +54,7 @@ var XPathUtils = {
   },
 
   find: function(element, expression) {
-    // check params and swap if necessary
+    // check params and swap if necessary, since parameters are in reverse order to evaluate()
     if (typeof element === "string") {
       var tmp = element;
       element = expression;
@@ -68,10 +66,9 @@ var XPathUtils = {
     switch (result.resultType) {
       case XPathEvaluator.XPathResult.UNORDERED_NODE_ITERATOR_TYPE:
         var results = [];
-        var el = result.iterateNext();
-        while (el) {
+        var el;
+        while (el = result.iterateNext()) {
           results.push(el);
-          el = result.iterateNext();
         }
         if (results.length > 1) {
           throw "Found multiple results with expression" + expression;
@@ -90,8 +87,7 @@ var XPathUtils = {
   },
 
   findReactRoot: function(path, element) {
-    // default to react 15.x xpath
-    var xpath = path || REACT_15_ROOT_XPATH;
+    var xpath = path || ".//*[@data-reactroot]";
     var xpathResult = window.document.evaluate(xpath, element || window.document.documentElement, null, window.XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
     if (xpathResult.snapshotLength == 0) {
       throw "No react application root was found with path " + xpath;
