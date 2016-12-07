@@ -1,8 +1,15 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
@@ -29,7 +36,7 @@ var Doc = React.createClass({
               <del id='n15' title='15' className='11'>del</del>
               <ins id='n16' title='16' className='12'>ins</ins>
             </p>
-            <font id='n17' title='17' className='14' face='n8 n26'>font</font>
+            <font id='n17' title='17' className='14' data-face='n8 n26'>font</font>
           </blockquote>
           <h3 id='n18' title='18' className='18'>
             <dfn id='n19' title='19' className='16'>dfn</dfn>
@@ -49,9 +56,11 @@ var Doc = React.createClass({
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
 suite("XPathReact", function () {
   suite("basic functional", function () {
@@ -76,11 +85,11 @@ suite("XPathReact", function () {
     });
 
     test("05", function () {
-      assertEvaluatesToNodeSet(".//blockquote/ancestor::*", ["div", "center"]);
+      assertEvaluatesToNodeSet(".//blockquote/ancestor::*", ["Doc", "div", "center"]);
     });
 
     test("06", function () {
-      assertEvaluatesToNodeSet(".//blockquote/ancestor-or-self::*", ["div", "center", "blockquote"]);
+      assertEvaluatesToNodeSet(".//blockquote/ancestor-or-self::*", ["Doc", "div", "center", "blockquote"]);
     });
 
     test("07", function () {
@@ -124,11 +133,11 @@ suite("XPathReact", function () {
     });
 
     test("17", function () {
-      assertEvaluatesToNodeSet(".//*[descendant::blockquote]", ["div", "center"]);
+      assertEvaluatesToNodeSet(".//*[descendant::blockquote]", ["Doc", "div", "center"]);
     });
 
     test("18", function () {
-      assertEvaluatesToNodeSet(".//*[descendant-or-self::blockquote]", ["div", "center", "blockquote"]);
+      assertEvaluatesToNodeSet(".//*[descendant-or-self::blockquote]", ["Doc", "div", "center", "blockquote"]);
     });
 
     test("19", function () {
@@ -195,7 +204,7 @@ suite("XPathReact", function () {
     });
 
     test("34", function () {
-      assertEvaluatesToNodeSet(".//blockquote/ancestor::* | .//blockquote/descendant::*", ["div", "center", "br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/ancestor::* | .//blockquote/descendant::*", ["Doc", "div", "center", "br", "p", "del", "ins", "font"]);
     });
 
     test("35", function () {
@@ -215,7 +224,7 @@ suite("XPathReact", function () {
     });
 
     test("39", function () {
-      assertEvaluatesToNodeSet(".//*[@title mod 2 = 0]", ["dl", "dd", "h1", "strong", "b", "blockquote", "p", "ins", "h3", "a", "sub", "span", "q"]);
+      assertEvaluatesToNodeSet(".//*[@title mod 2 = 0]", ["Doc", "dl", "dd", "h1", "strong", "b", "blockquote", "p", "ins", "h3", "a", "sub", "span", "q"]);
     });
 
     test("40", function () {
@@ -227,7 +236,7 @@ suite("XPathReact", function () {
     });
 
     test("42", function () {
-      assertEvaluatesToNodeSet("id(.//font/@face)", ["strong", "q"]);
+      assertEvaluatesToNodeSet("id(.//font/@data-face)", ["strong", "q"]);
     });
 
     test("45", function () {
@@ -316,7 +325,7 @@ suite("XPathReact", function () {
     });
 
     test("66", function () {
-      assertEvaluatesToNodeSet(".//*[contains(.,'b')]", ["div", "center", "h2", "b", "blockquote", "h4", "sub"]);
+      assertEvaluatesToNodeSet(".//*[contains(.,'b')]", ["Doc", "div", "center", "h2", "b", "blockquote", "h4", "sub"]);
     });
 
     test("67", function () {
@@ -348,7 +357,7 @@ suite("XPathReact", function () {
     });
 
     test("74", function () {
-      assertEvaluatesToNodeSet(".//*[sum(ancestor::*/@title) < sum(descendant::*/@title)]", ["div", "dl", "center", "h1", "h2", "blockquote", "p", "h3", "h4", "span"]);
+      assertEvaluatesToNodeSet(".//*[sum(ancestor::*/@title) < sum(descendant::*/@title)]", ["Doc", "div", "dl", "center", "h1", "h2", "blockquote", "p", "h3", "h4", "span"]);
     });
 
     test("75", function () {

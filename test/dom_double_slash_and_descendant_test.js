@@ -1,43 +1,47 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <head>
-          <title>Title</title>
-        </head>
-        <body>
-          <div id='parent'>
-            <div id='child-1'>
-              <div id='grand-child-1-1'></div>
-              <p>dust</p>
-              <div id='grand-child-1-2'></div>
-              <p>dust</p>
-              <div id='grand-child-1-3'></div>
-            </div>
+      <section>
+        <div id='parent'>
+          <div id='child-1'>
+            <div id='grand-child-1-1'></div>
             <p>dust</p>
-            <div id='child-2'>
-              <div id='grand-child-2-1'></div>
-              <p>dust</p>
-              <div id='grand-child-2-2'></div>
-              <p>dust</p>
-              <div id='grand-child-2-3'></div>
-            </div>
+            <div id='grand-child-1-2'></div>
+            <p>dust</p>
+            <div id='grand-child-1-3'></div>
           </div>
-        </body>
-      </html>
+          <p>dust</p>
+          <div id='child-2'>
+            <div id='grand-child-2-1'></div>
+            <p>dust</p>
+            <div id='grand-child-2-2'></div>
+            <p>dust</p>
+            <div id='grand-child-2-3'></div>
+          </div>
+        </div>
+      </section>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
 suite("XPathReact", function () {
   suite("double slash and descendant", function () {
@@ -46,7 +50,7 @@ suite("XPathReact", function () {
     });
 
     test("01", function () {
-      assertEvaluatesToNodeSet("//body/descendant::*", ["div#parent", "div#child-1", "div#grand-child-1-1", "p", "div#grand-child-1-2", "p", "div#grand-child-1-3", "p", "div#child-2", "div#grand-child-2-1", "p", "div#grand-child-2-2", "p", "div#grand-child-2-3"]);
+      assertEvaluatesToNodeSet("//section/descendant::*", ["div#parent", "div#child-1", "div#grand-child-1-1", "p", "div#grand-child-1-2", "p", "div#grand-child-1-3", "p", "div#child-2", "div#grand-child-2-1", "p", "div#grand-child-2-2", "p", "div#grand-child-2-3"]);
     });
 
     test("02", function () {
@@ -58,7 +62,7 @@ suite("XPathReact", function () {
     });
 
     test("04", function () {
-      assertEvaluatesToNodeSet("//body//*", ["div#parent", "div#child-1", "div#grand-child-1-1", "p", "div#grand-child-1-2", "p", "div#grand-child-1-3", "p", "div#child-2", "div#grand-child-2-1", "p", "div#grand-child-2-2", "p", "div#grand-child-2-3"]);
+      assertEvaluatesToNodeSet("//section//*", ["div#parent", "div#child-1", "div#grand-child-1-1", "p", "div#grand-child-1-2", "p", "div#grand-child-1-3", "p", "div#child-2", "div#grand-child-2-1", "p", "div#grand-child-2-2", "p", "div#grand-child-2-3"]);
     });
 
     test("05", function () {

@@ -2,9 +2,9 @@
 
 var Assert = require("assert");
 
-var XPathEvaluator = require("../register");
+var XPathEvaluator = require("../index");
 
-var XPathUtils = require("../utils");
+var Helper = require("./helper");
 
 var React = require("react");
 
@@ -31,7 +31,7 @@ var Bar = React.createClass({
 suite("XPathReact", function () {
   suite("child component", function () {
     test("unrendered child component", function () {
-      var document = XPathUtils.render(<Bar />);
+      var document = Helper.render(<Bar />);
 
       var expression = ".//Foo";
 
@@ -41,7 +41,7 @@ suite("XPathReact", function () {
     });
 
     test("unrendered child component (complex)", function () {
-      var document = XPathUtils.render(<Bar />);
+      var document = Helper.render(<Bar />);
 
       var expression = "string(.//Foo/parent::*)";
 
@@ -59,7 +59,7 @@ suite("XPathReact", function () {
         return <p><Qux /></p>;
       }
 
-      var document = XPathUtils.render(<Norf />);
+      var document = Helper.render(<Norf />);
 
       var expression = ".//Qux";
 
@@ -80,7 +80,7 @@ suite("XPathReact", function () {
         );
       }
 
-      var document = XPathUtils.render(<Qux />);
+      var document = Helper.render(<Qux />);
 
       var expression = "count(//p)";
 

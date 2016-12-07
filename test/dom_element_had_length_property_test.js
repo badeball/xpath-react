@@ -1,43 +1,47 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <head>
-          <title>title</title>
-        </head>
-        <body>
-          <select id='target'>
+      <section>
+        <select id='target'>
+          <option>foo</option>
+          <option>bar</option>
+          <option>baz</option>
+        </select>
+        <div>
+          <select name='target2' id='a'>
             <option>foo</option>
             <option>bar</option>
             <option>baz</option>
           </select>
-          <div>
-            <select name='target2' id='a'>
-              <option>foo</option>
-              <option>bar</option>
-              <option>baz</option>
-            </select>
-            <select name='target2' id='b'>
-              <option>foo</option>
-              <option>bar</option>
-              <option>baz</option>
-            </select>
-          </div>
-        </body>
-      </html>
+          <select name='target2' id='b'>
+            <option>foo</option>
+            <option>bar</option>
+            <option>baz</option>
+          </select>
+        </div>
+      </section>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
 suite("XPathReact", function () {
   suite("element had length property", function () {
@@ -58,15 +62,15 @@ suite("XPathReact", function () {
     });
 
     test("04", function () {
-      assertEvaluatesToNodeSet("//body/*[@id='target']", ["select#target"]);
+      assertEvaluatesToNodeSet("//section/*[@id='target']", ["select#target"]);
     });
 
     test("05", function () {
-      assertEvaluatesToNodeSet("//body/select[@id='target']", ["select#target"]);
+      assertEvaluatesToNodeSet("//section/select[@id='target']", ["select#target"]);
     });
 
     test("06", function () {
-      assertEvaluatesToNodeSet("//body/node()[@id='target']", ["select#target"]);
+      assertEvaluatesToNodeSet("//section/node()[@id='target']", ["select#target"]);
     });
 
     test("08", function () {
@@ -82,15 +86,15 @@ suite("XPathReact", function () {
     });
 
     test("11", function () {
-      assertEvaluatesToNodeSet("//body/div/*[@name='target2']", ["select#a", "select#b"]);
+      assertEvaluatesToNodeSet("//section/div/*[@name='target2']", ["select#a", "select#b"]);
     });
 
     test("12", function () {
-      assertEvaluatesToNodeSet("//body/div/select[@name='target2']", ["select#a", "select#b"]);
+      assertEvaluatesToNodeSet("//section/div/select[@name='target2']", ["select#a", "select#b"]);
     });
 
     test("13", function () {
-      assertEvaluatesToNodeSet("//body/div/node()[@name='target2']", ["select#a", "select#b"]);
+      assertEvaluatesToNodeSet("//section/div/node()[@name='target2']", ["select#a", "select#b"]);
     });
   });
 });

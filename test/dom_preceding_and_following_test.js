@@ -1,44 +1,48 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <head>
-          <title>title</title>
-        </head>
-        <body>
-          <div>
-            <p className='1'></p>
-            <ul>
-              <li id='t1'></li>
-              <li></li>
-              <li id='t2'></li>
-            </ul>
-            <p className='2'></p>
-          </div>
-          <div>
-           <p className='3'></p>
-           <ul>
-             <li id='t3'></li>
-             <li></li>
-             <li id='t4'></li>
-           </ul>
-           <p className='4'></p>
-          </div>
-        </body>
-      </html>
+      <section>
+        <div>
+          <p className='1'></p>
+          <ul>
+            <li id='t1'></li>
+            <li></li>
+            <li id='t2'></li>
+          </ul>
+          <p className='2'></p>
+        </div>
+        <div>
+         <p className='3'></p>
+         <ul>
+           <li id='t3'></li>
+           <li></li>
+           <li id='t4'></li>
+         </ul>
+         <p className='4'></p>
+        </div>
+      </section>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
 suite("XPathReact", function () {
   suite("preceding and following", function () {
@@ -71,31 +75,31 @@ suite("XPathReact", function () {
     });
 
     test("07", function () {
-      assertEvaluatesToNodeSet("id('t1 t2 t3 t4')/preceding::*", ["head", "title", "div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3", "li#t3", "li"]);
+      assertEvaluatesToNodeSet("id('t1 t2 t3 t4')/preceding::*", ["div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3", "li#t3", "li"]);
     });
 
     test("08", function () {
-      assertEvaluatesToNodeSet("id('t1 t2 t3')/preceding::*", ["head", "title", "div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3"]);
+      assertEvaluatesToNodeSet("id('t1 t2 t3')/preceding::*", ["div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3"]);
     });
 
     test("09", function () {
-      assertEvaluatesToNodeSet("id('t1 t2')/preceding::*", ["head", "title", "p.1", "li#t1", "li"]);
+      assertEvaluatesToNodeSet("id('t1 t2')/preceding::*", ["p.1", "li#t1", "li"]);
     });
 
     test("10", function () {
-      assertEvaluatesToNodeSet("id('t1')/preceding::*", ["head", "title", "p.1"]);
+      assertEvaluatesToNodeSet("id('t1')/preceding::*", ["p.1"]);
     });
 
     test("11", function () {
-      assertEvaluatesToNodeSet("id('t2')/preceding::*", ["head", "title", "p.1", "li#t1", "li"]);
+      assertEvaluatesToNodeSet("id('t2')/preceding::*", ["p.1", "li#t1", "li"]);
     });
 
     test("12", function () {
-      assertEvaluatesToNodeSet("id('t3')/preceding::*", ["head", "title", "div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3"]);
+      assertEvaluatesToNodeSet("id('t3')/preceding::*", ["div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3"]);
     });
 
     test("13", function () {
-      assertEvaluatesToNodeSet("id('t4')/preceding::*", ["head", "title", "div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3", "li#t3", "li"]);
+      assertEvaluatesToNodeSet("id('t4')/preceding::*", ["div", "p.1", "ul", "li#t1", "li", "li#t2", "p.2", "p.3", "li#t3", "li"]);
     });
 
     test("14", function () {

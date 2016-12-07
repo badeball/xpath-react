@@ -4,17 +4,23 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-var document = (
-  <html>
-    <body>
-      <svg id='svg' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 1000 50'>
-        <rect id='rect' fill='red' stroke='none' height='12' width='12' y='20' x='100'></rect>
-        <text id='text' fill='black' font-size='12' font-family='Arial' y='30' x='115'>Apple</text>
-        <path id='path' d='M 200 26 L 600 26' stroke='red' stroke-width='1em'/>
-      </svg>
-    </body>
-  </html>
-);
+var Doc = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <body>
+          <svg id='svg' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 1000 50'>
+            <rect id='rect' fill='red' stroke='none' height='12' width='12' y='20' x='100'></rect>
+            <text id='text' fill='black' font-size='12' font-family='Arial' y='30' x='115'>Apple</text>
+            <path id='path' d='M 200 26 L 600 26' stroke='red' stroke-width='1em'/>
+          </svg>
+        </body>
+      </html>
+    );
+  }
+});
+
+var document = Helper.render(<Doc/>);
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

@@ -1,28 +1,35 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <body>
+      <div>
           <div id='dupeid'>My id is dupeid</div>
           <div id='dupeid'>My id is also dupeid</div>
           <div id='uniqueid'>My id is uniqueid</div>
-        </body>
-      </html>
+      </div>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
-var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
+var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, output);
 
 suite("XPathReact", function () {
   suite("id", function () {

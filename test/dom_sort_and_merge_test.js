@@ -1,38 +1,42 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <head>
-          <title>Title</title>
-        </head>
-        <body>
-          <ul id='container'>
-            <li id='li-1'></li>
-            <li id='li-2'></li>
-            <li id='li-3'></li>
-            <li id='li-4'></li>
-          </ul>
-          <ul id='container-0'>
-            <li id='li-5'></li>
-            <li id='li-6'></li>
-            <li id='li-7'></li>
-            <li id='li-8'></li>
-          </ul>
-        </body>
-      </html>
+      <div>
+        <ul id='container'>
+          <li id='li-1'></li>
+          <li id='li-2'></li>
+          <li id='li-3'></li>
+          <li id='li-4'></li>
+        </ul>
+        <ul id='container-0'>
+          <li id='li-5'></li>
+          <li id='li-6'></li>
+          <li id='li-7'></li>
+          <li id='li-8'></li>
+        </ul>
+      </div>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
 suite("XPathReact", function () {
   suite("sort and merge", function () {

@@ -1,46 +1,49 @@
 "use strict";
 
 var React = require("react");
+var ReactDom = require("react-dom");
 
 var Helper = require("./helper");
+
+var jsdom = require("jsdom");
+
+global.document = jsdom.jsdom("");
+global.window = document.defaultView;
+global.navigator = window.navigator;
 
 var Doc = React.createClass({
   render: function () {
     return (
-      <html>
-        <head>
-          <title>Title</title>
-          <link rel='index' href='http://coderepos.org/' type='text/html' />
-        </head>
-        <body>
-          <blockquote
-              title='CodeRepos'
-              cite='http://coderepos.org/'>
-            <p title='paragraph' id='paragraph'>
-              <br id='pSib' />
-              <input name='foo' id='bar' className='input-1' />
-              <input name='bar' id='foo' className='input-2' />
-              <img name='hoge' id='fuga' className='img-1' />
-              <img name='fuga' id='hoge' className='img-2' />
-              <br id='nSib' />
-              Share your codes!
-              <input htmlFor='foo' />
-            </p>
-            <cite className='cite site'>
-              <a title='CodeRepos' href='http://coderepos.org/'>CodeRepos</a>
-            </cite>
-          </blockquote>
-        </body>
-      </html>
+      <div>
+        <blockquote
+            title='CodeRepos'
+            cite='http://coderepos.org/'>
+          <p title='paragraph' id='paragraph'>
+            <br id='pSib' />
+            <input name='foo' id='bar' className='input-1' />
+            <input name='bar' id='foo' className='input-2' />
+            <img name='hoge' id='fuga' className='img-1' />
+            <img name='fuga' id='hoge' className='img-2' />
+            <br id='nSib' />
+            Share your codes!
+            <input htmlFor='foo' />
+          </p>
+          <cite className='cite site'>
+            <a title='CodeRepos' href='http://coderepos.org/'>CodeRepos</a>
+          </cite>
+        </blockquote>
+      </div>
     );
   }
 });
 
-var document = Helper.render(<Doc/>);
+var div = document.createElement("div");
+document.body.appendChild(div);
+var output = ReactDom.render(<Doc />, div);
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, output);
 
-var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
+var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, output);
 
 suite("XPathReact", function () {
   suite("attribute", function () {
@@ -61,7 +64,7 @@ suite("XPathReact", function () {
     });
 
     test("04", function () {
-      assertEvaluatesToNodeSet("//body/*[@title]", ["blockquote"]);
+      assertEvaluatesToNodeSet("//div/*[@title]", ["blockquote"]);
     });
 
     test("05", function () {
@@ -85,7 +88,7 @@ suite("XPathReact", function () {
     });
 
     test("10", function () {
-      assertEvaluatesToNodeSet("//body//*[@id='paragraph']", ["p"]);
+      assertEvaluatesToNodeSet("//div//*[@id='paragraph']", ["p"]);
     });
 
     test("11", function () {
@@ -193,15 +196,15 @@ suite("XPathReact", function () {
     });
 
     test("37", function () {
-      assertEvaluatesToNodeSet("//node()[@*='http://coderepos.org/']", ["link", "blockquote", "a"]);
+      assertEvaluatesToNodeSet("//node()[@*='http://coderepos.org/']", ["blockquote", "a"]);
     });
 
     test("38", function () {
-      assertEvaluatesToNodeSet("//*[./@*='http://coderepos.org/']", ["link", "blockquote", "a"]);
+      assertEvaluatesToNodeSet("//*[./@*='http://coderepos.org/']", ["blockquote", "a"]);
     });
 
     test("39", function () {
-      assertEvaluatesToNodeSet("//*[(@href|@cite)='http://coderepos.org/']", ["link", "blockquote", "a"]);
+      assertEvaluatesToNodeSet("//*[(@href|@cite)='http://coderepos.org/']", ["blockquote", "a"]);
     });
 
     test("40", function () {

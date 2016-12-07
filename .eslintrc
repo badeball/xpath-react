@@ -12,7 +12,8 @@
   },
   "env": {
     "mocha": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "extends": "eslint:recommended",
   "plugins": ["react"]
