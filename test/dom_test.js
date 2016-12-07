@@ -79,7 +79,31 @@ describe("XPathReact", function () {
       Assert.equal(p.tagName, "INPUT");
       Assert.equal(p.type, "text");
       Assert.equal(p.name, "test");
+
+      var p2 = XPathUtils.find(".//B//*[@type='text']", output);
+      Assert.equal(p, p2);
     });
+
+    it("should not find B in rendered component (demonstrate difference between evaluation on component tree and elements))", function () {
+      
+      initDOM();
+
+      var div = document.createElement("div");
+      document.body.appendChild(div);
+
+      var el = React.createElement(A, { content: React.createElement(B) });
+      var output = ReactDom.render(el, div)._reactInternalInstance._currentElement;
+
+      var p = XPathUtils.find(".//input[@type='text']", output);
+      Assert.equal(!!p, false);
+
+      var p2 = XPathUtils.find(".//B//*[@type='text']", output);
+      Assert.equal(!!p2, false);
+
+      var p3 = XPathUtils.find(".//A", output);
+      Assert.equal(p3.type, A);
+    });
+
 
   });
 });
