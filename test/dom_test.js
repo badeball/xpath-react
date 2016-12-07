@@ -29,7 +29,7 @@ var A = React.createClass({
 
 var B = React.createClass({
   render: function () {
-    return <div><span>{this.props.btag || "label"}:</span> <input type='text' name='test'></input></div>;
+    return <div><span>{this.props.btag || "label"}:</span> <input type='text' name='test' /></div>;
   }
 });
 
