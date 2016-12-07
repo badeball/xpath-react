@@ -67,7 +67,7 @@ var XPathUtils = {
       case XPathEvaluator.XPathResult.UNORDERED_NODE_ITERATOR_TYPE:
         var results = [];
         var el;
-        while (!!(el = result.iterateNext())) {
+        while ((el = result.iterateNext())) {
           results.push(el);
         }
         if (results.length > 1) {
