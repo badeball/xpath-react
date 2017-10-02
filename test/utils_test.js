@@ -6,22 +6,16 @@ var XPathUtils = require("../utils");
 
 var React = require("react");
 
-var Foo = React.createClass({
-  propTypes: {
-    onClick: React.PropTypes.func
-  },
-
-  render: function () {
-    return (
-      <div>
-        <p>Hello world!</p>
-        <button onClick={this.props.onClick}>
-          Bar
-        </button>
-      </div>
-    );
-  }
-});
+var Foo = function (props) {
+  return (
+    <div>
+      <p>Hello world!</p>
+      <button onClick={props.onClick}>
+        Bar
+      </button>
+    </div>
+  );
+};
 
 describe("XPathReact", function () {
   describe("Utils", function () {

@@ -1,12 +1,14 @@
 "use strict";
 
-var TestUtils = require("react-addons-test-utils");
+var TestUtils = require("react-dom/test-utils");
+
+var ShallowRenderer = require("react-test-renderer/shallow");
 
 var XPath = require("./register");
 
 module.exports = {
   render: function (component) {
-    var renderer = TestUtils.createRenderer();
+    var renderer = new ShallowRenderer();
     renderer.render(component);
     return renderer.getRenderOutput();
   },

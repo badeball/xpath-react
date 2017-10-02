@@ -8,25 +8,21 @@ var XPathUtils = require("../utils");
 
 var React = require("react");
 
-var Foo = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Hello world!</p>
-      </div>
-    );
-  }
-});
+var Foo = function () {
+  return (
+    <div>
+      <p>Hello world!</p>
+    </div>
+  );
+};
 
-var Bar = React.createClass({
-  render: function () {
-    return (
-      <div>
-        Foo: <Foo />
-      </div>
-    );
-  }
-});
+var Bar = function () {
+  return (
+    <div>
+      Foo: <Foo />
+    </div>
+  );
+};
 
 suite("XPathReact", function () {
   suite("child component", function () {
@@ -50,14 +46,22 @@ suite("XPathReact", function () {
       Assert.equal(result.stringValue, "Foo: ");
     });
 
-    test("unrendered child component (functional component)", function () {
-      function Qux () {
-        return "Hello world!";
+    test("unrendered child component (createClass)", function () {
+      if (!React.createClass) {
+        return this.skip();
       }
 
-      function Norf () {
-        return <p><Qux /></p>;
-      }
+      var Qux = React.createClass({
+        render: function () {
+          return "Hello world!";
+        }
+      });
+
+      var Norf = React.createClass({
+        render: function () {
+          return <p><Qux /></p>;
+        }
+      });
 
       var document = XPathUtils.render(<Norf />);
 
