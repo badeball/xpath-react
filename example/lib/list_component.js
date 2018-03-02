@@ -1,57 +1,43 @@
-"use strict";
-
 var React = require("react");
 
-module.exports = React.createClass({
-  displayName: "List",
+var PropTypes = require("prop-types");
 
-  propTypes: {
-    formValue: React.PropTypes.string,
-    isLoading: React.PropTypes.bool,
-    items: React.PropTypes.array,
-    onAdd: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onRemove: React.PropTypes.func
-  },
+function List (props) {
+  return (
+    <div>
+      <h1>Items</h1>
 
-  onAdd: function () {
-    this.props.onAdd(this.props.formValue);
-  },
+      {props.isLoading &&
+        <p>Loading items..</p>}
 
-  onChange: function (e) {
-    this.props.onChange(e.target.value);
-  },
+      {!props.isLoading &&
+        <ul>
+          {(props.items || []).map(function (item, i) {
+            return (
+              <li key={i}>
+                {item}
 
-  onRemove: function (iItem) {
-    this.props.onRemove(iItem);
-  },
+                <button onClick={e => props.onRemove(i)}>
+                  Delete
+                </button>
+              </li>
+            );
+          })}
+        </ul>}
 
-  render: function () {
-    return (
-      <div>
-        <h1>Items</h1>
+      <textarea value={props.formValue} onChange={e => props.change(e.target.value)} />
+      <button onClick={() => props.onAdd(props.formValue)}>Add</button>
+    </div>
+  );
+}
 
-        {this.props.isLoading &&
-          <p>Loading items..</p>}
+List.propTypes = {
+  formValue: PropTypes.string,
+  isLoading: PropTypes.bool,
+  items: PropTypes.array,
+  onAdd: PropTypes.func,
+  onChange: PropTypes.func,
+  onRemove: PropTypes.func
+};
 
-        {!this.props.isLoading &&
-          <ul>
-            {(this.props.items || []).map(function (item, i) {
-              return (
-                <li key={i}>
-                  {item}
-
-                  <button onClick={this.onRemove.bind(null, i)}>
-                    Delete
-                  </button>
-                </li>
-              );
-            }, this)}
-          </ul>}
-
-        <textarea value={this.props.formValue} onChange={this.onChange} />
-        <button onClick={this.onAdd}>Add</button>
-      </div>
-    );
-  }
-});
+module.exports = List;

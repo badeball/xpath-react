@@ -1,21 +1,23 @@
-"use strict";
+var Assert = require("assert");
 
 var ReactDOMServer = require("react-dom/server");
 
 var XPathUtils = require("xpath-react/utils");
 
-/* eslint-disable no-unused-vars */
 var React = require("react");
 
 var List = require("../lib/list_component");
-/* eslint-enable no-unused-vars */
+
+function asserHasXPath (element, expression) {
+  Assert.ok(XPathUtils.find(element, expression), "Expected element to have expression " + expression);
+}
 
 describe("ListComponent", function () {
   describe("when isLoading is true", function () {
     it("should render a loading text", function () {
       var rendering = ReactDOMServer.renderToString(<List isLoading={true} />);
 
-      rendering.should.include("Loading items..");
+      Assert.ok(rendering.includes("Loading items.."));
     });
   });
 
@@ -25,8 +27,8 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} items={items} />);
 
-      element.should.have.xpath(".//li[contains(., 'foo')]");
-      element.should.have.xpath(".//li[contains(., 'bar')]");
+      asserHasXPath(element, ".//li[contains(., 'foo')]");
+      asserHasXPath(element, ".//li[contains(., 'bar')]");
     });
 
     it("should render a delete button for each item", function () {
@@ -34,8 +36,8 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} items={items} />);
 
-      element.should.have.xpath(".//li[contains(., 'foo')]/button[contains(., 'Delete')]");
-      element.should.have.xpath(".//li[contains(., 'bar')]/button[contains(., 'Delete')]");
+      asserHasXPath(element, ".//li[contains(., 'foo')]/button[contains(., 'Delete')]");
+      asserHasXPath(element, ".//li[contains(., 'bar')]/button[contains(., 'Delete')]");
     });
 
     it("should invoke a callback upon pressing a delete button", function () {
@@ -47,7 +49,7 @@ describe("ListComponent", function () {
 
       XPathUtils.Simulate.click(element, ".//button[contains(., 'Delete')]");
 
-      onRemove.should.have.been.calledWith(0);
+      Assert.ok(onRemove.called);
     });
 
     it("should render the given form value", function () {
@@ -55,13 +57,13 @@ describe("ListComponent", function () {
 
       var textarea = XPathUtils.find(element, ".//textarea");
 
-      textarea.props.value.should.equal("foo");
+      Assert.equal(textarea.props.value, "foo");
     });
 
     it("should render an add item button", function () {
       var element = XPathUtils.render(<List isLoading={false} />);
 
-      element.should.have.xpath(".//button[contains(., 'Add')]");
+      asserHasXPath(element, ".//button[contains(., 'Add')]");
     });
 
     it("should invoke a callback upon pressing the add button", function () {
@@ -71,7 +73,7 @@ describe("ListComponent", function () {
 
       XPathUtils.Simulate.click(element, ".//button[contains(., 'Add')]");
 
-      onAdd.should.have.been.calledWith("foo");
+      Assert.ok(onAdd.calledWith("foo"));
     });
   });
 });
