@@ -6,7 +6,7 @@
 
 var assert = require("assert");
 
-var XPathEvaluator = require("../register");
+var XPathEvaluator = require("../lib");
 
 var XPathResult = XPathEvaluator.XPathResult;
 

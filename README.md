@@ -63,7 +63,7 @@ but accepts a `ReactElement` instead of a `Node`.
 #### Example
 
 ```javascript
-var XPath = require("xpath-react/register");
+var XPath = require("xpath-react");
 
 var Foo = (
   <ul>

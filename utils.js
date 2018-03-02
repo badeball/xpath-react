@@ -4,7 +4,7 @@ var TestUtils = require("react-dom/test-utils");
 
 var ShallowRenderer = require("react-test-renderer/shallow");
 
-var XPath = require("./register");
+var XPath = require("./lib");
 
 module.exports = {
   render: function (component) {

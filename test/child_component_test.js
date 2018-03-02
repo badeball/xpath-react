@@ -2,7 +2,7 @@
 
 var Assert = require("assert");
 
-var XPathEvaluator = require("../register");
+var XPathEvaluator = require("../lib");
 
 var XPathUtils = require("../utils");
 
