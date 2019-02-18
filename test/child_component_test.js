@@ -4,9 +4,9 @@ var Assert = require("assert");
 
 var XPathEvaluator = require("../lib");
 
-var XPathUtils = require("../utils");
-
 var React = require("react");
+
+var Helper = require("./helper");
 
 var Foo = function () {
   return (
@@ -27,7 +27,7 @@ var Bar = function () {
 suite("XPathReact", function () {
   suite("child component", function () {
     test("unrendered child component", function () {
-      var document = XPathUtils.render(<Bar />);
+      var document = Helper.shallow(<Bar />);
 
       var expression = ".//Foo";
 
@@ -37,7 +37,7 @@ suite("XPathReact", function () {
     });
 
     test("unrendered child component (complex)", function () {
-      var document = XPathUtils.render(<Bar />);
+      var document = Helper.shallow(<Bar />);
 
       var expression = "string(.//Foo/parent::*)";
 
@@ -63,7 +63,7 @@ suite("XPathReact", function () {
         }
       });
 
-      var document = XPathUtils.render(<Norf />);
+      var document = Helper.shallow(<Norf />);
 
       var expression = ".//Qux";
 
@@ -84,7 +84,7 @@ suite("XPathReact", function () {
         );
       }
 
-      var document = XPathUtils.render(<Qux />);
+      var document = Helper.shallow(<Qux />);
 
       var expression = "count(//p)";
 

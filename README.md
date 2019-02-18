@@ -16,9 +16,7 @@ XPath 1.0 expressions and thus testing it without a real DOM.
 * [Installation](#installation)
 * [Usage](#usage)
   * [evaluate](#xpathevaluate)
-  * [render](#xpathutilsrender)
   * [find](#xpathutilsfind)
-  * [Simulate.\<eventName\>](#xpathutilssimulateeventname)
 * [Known issues & limitations](#known-issues--limitations)
 
 ## Installation
@@ -39,7 +37,7 @@ $ npm install xpath-evaluator react react-dom react-test-renderer
 ## Usage
 
 The library provides a basic `evaluate` method that you might commonly know as
-[Document.evaluate][document-evaluate]. Additionally, three convenience method
+[Document.evaluate][document-evaluate]. Additionally, a convenience method
 exist to make usage more practical, as `evaluate` is a bit cumbersome. A
 practical example can be found in [example/][example].
 
@@ -79,38 +77,6 @@ result.stringValue; // => "bar"
 
 [document-evaluate]: https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate
 
-### XPathUtils.render
-
-```
-ReactElement XPathUtils.render (
-  ReactComponent element
-)
-```
-
-[Shallowly render][shallow-rendering] a component.
-
-[shallow-rendering]: https://facebook.github.io/react/docs/test-utils.html#shallow-rendering
-
-##### Example
-
-```javascript
-var XPathUtils = require("xpath-react/utils");
-
-var Foo = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <p>Hello world!</p>
-      </div>
-    );
-  }
-});
-
-var output = XPathUtils.render(<Foo />);
-
-output.props.children.props.children; // => "Hello world!"
-```
-
 ### XPathUtils.find
 
 ```
@@ -127,7 +93,15 @@ conditions, respectively).
 ##### Example
 
 ```javascript
+var ShallowRenderer = require("react-test-renderer/shallow");
+
 var XPathUtils = require("xpath-react/utils");
+
+function shallow (component) {
+  var renderer = new ShallowRenderer();
+  renderer.render(component);
+  return renderer.getRenderOutput();
+}
 
 var Foo = React.createClass({
   render: function () {
@@ -139,7 +113,7 @@ var Foo = React.createClass({
   }
 });
 
-var output = XPathUtils.render(<Foo />);
+var output = shallow(<Foo />);
 
 XPathUtils.find(output, ".//p"); // => ReactElement { type: "p", ... }
 XPathUtils.find(output, "string(.//p)"); // => "Hello world!"
@@ -161,53 +135,9 @@ var Bar = React.createClass({
   }
 });
 
-var output = XPathUtils.render(<Bar />);
+var output = shallow(<Bar />);
 
 XPathUtils.find(output, "count(.//Foo)"); // => 1
-```
-
-### XPathUtils.Simulate.{eventName}
-
-```
-XPathUtils.Simulate.{eventName} (
-  ReactElement element,
-  [DOMString expression],
-  [Object eventData]
-)
-```
-
-Invokes the event handler of an element with optional event data. It also
-accepts an expression argument, where which the matching element's event
-handler will be invoked.
-
-##### Example
-
-```javascript
-var XPathUtils = require("xpath-react/utils");
-
-var Foo = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <button onClick={this.props.onClick}>
-          Hello world!
-        </button>
-      </div>
-    );
-  }
-});
-
-var onClick = Sinon.spy();
-
-var output = XPathUtils.render(<Foo onClick={onClick} />);
-
-XPathUtils.Simulate.click(output, ".//button[contains(., 'Hello world!')]");
-
-var button = XPathUtils.find(output, ".//button[contains(., 'Hello world!')]");
-
-XPathUtils.Simulate.click(button);
-
-onClick.should.have.been.calledTwice;
 ```
 
 ## Known issues & limitations
