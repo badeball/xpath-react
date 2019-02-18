@@ -1,13 +1,13 @@
 MOCHA := ./node_modules/.bin/_mocha
-ESLINT := ./node_modules/.bin/eslint
 ISTANBUL := ./node_modules/.bin/istanbul
 
-all: lint test
+all: test
 
-ci: lint test-cover
+ci: test-cover
 
 lint:
-	$(ESLINT) .
+	echo "Not yet implemented"
+	false
 
 test:
 	$(MOCHA) --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js

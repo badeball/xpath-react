@@ -4,7 +4,6 @@ var React = require("react");
 
 var Helper = require("./helper");
 
-/* eslint-disable no-script-url */
 var document = (
   <html>
     <body>
@@ -17,7 +16,6 @@ var document = (
     </body>
   </html>
 );
-/* eslint-ena enable no-script-url */
 
 var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
 

@@ -1,7 +1,3 @@
-/* eslint-env node */
-
-/* eslint-disable no-loop-func */
-
 "use strict";
 
 var assert = require("assert");
