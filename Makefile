@@ -7,12 +7,12 @@ all: lint test
 ci: lint test-cover
 
 lint:
-	@$(ESLINT) .
+	$(ESLINT) .
 
 test:
-	@$(MOCHA) --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
+	$(MOCHA) --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
 test-cover:
-	@$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
+	$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
 .PHONY: lint test test-cover
