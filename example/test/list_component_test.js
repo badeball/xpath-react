@@ -10,7 +10,7 @@ var Sinon = require("sinon");
 
 var List = require("../lib/list_component");
 
-function asserHasXPath (element, expression) {
+function assertHasXPath (element, expression) {
   Assert.ok(XPathUtils.find(element, expression), "Expected element to have expression " + expression);
 }
 
@@ -29,8 +29,8 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} items={items} />);
 
-      asserHasXPath(element, ".//li[contains(., 'foo')]");
-      asserHasXPath(element, ".//li[contains(., 'bar')]");
+      assertHasXPath(element, ".//li[contains(., 'foo')]");
+      assertHasXPath(element, ".//li[contains(., 'bar')]");
     });
 
     it("should render a delete button for each item", function () {
@@ -38,8 +38,8 @@ describe("ListComponent", function () {
 
       var element = XPathUtils.render(<List isLoading={false} items={items} />);
 
-      asserHasXPath(element, ".//li[contains(., 'foo')]/button[contains(., 'Delete')]");
-      asserHasXPath(element, ".//li[contains(., 'bar')]/button[contains(., 'Delete')]");
+      assertHasXPath(element, ".//li[contains(., 'foo')]/button[contains(., 'Delete')]");
+      assertHasXPath(element, ".//li[contains(., 'bar')]/button[contains(., 'Delete')]");
     });
 
     it("should invoke a callback upon pressing a delete button", function () {
@@ -65,7 +65,7 @@ describe("ListComponent", function () {
     it("should render an add item button", function () {
       var element = XPathUtils.render(<List isLoading={false} />);
 
-      asserHasXPath(element, ".//button[contains(., 'Add')]");
+      assertHasXPath(element, ".//button[contains(., 'Add')]");
     });
 
     it("should invoke a callback upon pressing the add button", function () {

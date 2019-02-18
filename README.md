@@ -16,9 +16,7 @@ XPath 1.0 expressions and thus testing it without a real DOM.
 * [Installation](#installation)
 * [Usage](#usage)
   * [evaluate](#xpathevaluate)
-  * [render](#xpathutilsrender)
   * [find](#xpathutilsfind)
-  * [Simulate.\<eventName\>](#xpathutilssimulateeventname)
 * [Known issues & limitations](#known-issues--limitations)
 
 ## Installation
