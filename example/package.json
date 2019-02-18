@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "mocha --require @babel/register"
+  },
   "devDependencies": {
     "@babel/core": "latest",
     "@babel/plugin-transform-react-jsx": "latest",

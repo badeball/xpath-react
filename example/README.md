@@ -5,8 +5,6 @@ xpath-react.
 
 ### Running tests
 
-Running the tests is also performed using a make task.
-
 ```
-$ make test
+$ npm test
 ```
