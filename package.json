@@ -10,8 +10,6 @@
   },
   "peerDependencies": {
     "react": "^15.5.0 || ^16.0.0",
-    "react-dom": "^15.5.0 || ^16.0.0",
-    "react-test-renderer": "^15.3.0 || ^16.0.0",
     "xpath-evaluator": "^3.0.0"
   },
   "devDependencies": {
