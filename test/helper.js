@@ -2,11 +2,19 @@
 
 var assert = require("assert");
 
+var ShallowRenderer = require("react-test-renderer/shallow");
+
 var XPathEvaluator = require("../lib");
 
 var XPathResult = XPathEvaluator.XPathResult;
 
 module.exports = {
+  shallow: function (component) {
+    var renderer = new ShallowRenderer();
+    renderer.render(component);
+    return renderer.getRenderOutput();
+  },
+
   assertEvaluatesToNodeSet: function (contextNode, expression, nodes) {
     var result = XPathEvaluator.evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
 
