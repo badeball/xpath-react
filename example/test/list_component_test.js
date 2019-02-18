@@ -6,6 +6,8 @@ var XPathUtils = require("xpath-react/utils");
 
 var React = require("react");
 
+var Sinon = require("sinon");
+
 var List = require("../lib/list_component");
 
 function asserHasXPath (element, expression) {
@@ -43,7 +45,7 @@ describe("ListComponent", function () {
     it("should invoke a callback upon pressing a delete button", function () {
       var items = ["foo"];
 
-      var onRemove = this.sinon.spy();
+      var onRemove = Sinon.spy();
 
       var element = XPathUtils.render(<List isLoading={false} items={items} onRemove={onRemove} />);
 
@@ -67,7 +69,7 @@ describe("ListComponent", function () {
     });
 
     it("should invoke a callback upon pressing the add button", function () {
-      var onAdd = this.sinon.spy();
+      var onAdd = Sinon.spy();
 
       var element = XPathUtils.render(<List isLoading={false} onAdd={onAdd} formValue="foo" />);
 

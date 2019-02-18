@@ -1,12 +1,14 @@
 {
   "devDependencies": {
-    "babel": "^5.0.0",
-    "mocha": "^2.0.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0",
-    "sinon": "^1.0.0",
+    "@babel/core": "latest",
+    "@babel/plugin-transform-react-jsx": "latest",
+    "@babel/register": "latest",
+    "mocha": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-test-renderer": "latest",
+    "sinon": "latest",
     "xpath-evaluator": "badeball/xpath-evaluator#v3.0.0",
     "xpath-react": "badeball/xpath-react#v5.0.0"
   }

@@ -1,6 +1,6 @@
 MOCHA := ./node_modules/.bin/mocha
 
 test:
-	@$(MOCHA) --compilers js:babel/register
+	@$(MOCHA) --require babel/register
 
 .PHONY: test
