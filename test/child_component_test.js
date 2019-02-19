@@ -4,6 +4,8 @@ var Assert = require("assert");
 
 var XPathEvaluator = require("../lib");
 
+var { XPathResult } = require("xpath-evaluator");
+
 var XPathUtils = require("../utils");
 
 var React = require("react");
@@ -33,7 +35,7 @@ suite("XPathReact", function () {
 
       var expression = ".//Foo";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.ANY_UNORDERED_NODE_TYPE);
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Foo);
     });
@@ -43,7 +45,7 @@ suite("XPathReact", function () {
 
       var expression = "string(.//Foo/parent::*)";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.STRING_TYPE);
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.STRING_TYPE);
 
       Assert.equal(result.stringValue, "Foo: ");
     });
@@ -69,7 +71,7 @@ suite("XPathReact", function () {
 
       var expression = ".//Qux";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.ANY_UNORDERED_NODE_TYPE);
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Qux);
     });
@@ -90,7 +92,7 @@ suite("XPathReact", function () {
 
       var expression = "count(//p)";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathEvaluator.XPathResult.NUMBER_TYPE);
+      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.NUMBER_TYPE);
 
       Assert.equal(result.numberValue, 4);
     });

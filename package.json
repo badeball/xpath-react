@@ -10,7 +10,7 @@
   },
   "peerDependencies": {
     "react": "^15.5.0 || ^16.0.0",
-    "xpath-evaluator": "^3.0.0"
+    "xpath-evaluator": "^4.0.1"
   },
   "devDependencies": {
     "babel": "5.8.23",
