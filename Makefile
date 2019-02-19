@@ -1,4 +1,5 @@
 MOCHA := ./node_modules/.bin/_mocha
+ROLLUP := ./node_modules/.bin/rollup
 ISTANBUL := ./node_modules/.bin/istanbul
 
 all: test
@@ -15,4 +16,10 @@ test:
 test-cover:
 	$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
-.PHONY: lint test test-cover
+build:
+	@$(ROLLUP) --config
+
+ensure-built: build
+	@[ -z "$(shell git status -s dist/)" ]
+
+.PHONY: lint test test-cover build ensure-built

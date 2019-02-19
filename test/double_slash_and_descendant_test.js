@@ -1,8 +1,6 @@
-"use strict";
+import React from "react";
 
-var React = require("react");
-
-var Helper = require("./helper");
+import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
 var document = (
   <html>
@@ -31,7 +29,7 @@ var document = (
   </html>
 );
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("double slash and descendant", function () {

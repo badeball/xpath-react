@@ -1,12 +1,10 @@
-"use strict";
+import Assert from "assert";
 
-var Assert = require("assert");
+import { find } from "../lib";
 
-var XPathUtils = require("../utils");
+import React from "react";
 
-var React = require("react");
-
-var Helper = require("./helper");
+import { shallow } from "./helper";
 
 var Foo = function (props) {
   return (
@@ -23,41 +21,41 @@ describe("XPathReact", function () {
   describe("Utils", function () {
     describe("find()", function () {
       it("should return the first element matching the expression", function () {
-        var output = Helper.shallow(<Foo />);
+        var output = shallow(<Foo />);
 
-        var p = XPathUtils.find(output, ".//p");
+        var p = find(output, ".//p");
 
         Assert.equal(p.props.children, "Hello world!");
       });
 
       it("should return null when no elements match the expression", function () {
-        var output = Helper.shallow(<Foo />);
+        var output = shallow(<Foo />);
 
-        var ul = XPathUtils.find(output, ".//ul");
+        var ul = find(output, ".//ul");
 
         Assert.equal(ul, null);
       });
 
       it("should support returning string types", function () {
-        var output = Helper.shallow(<Foo />);
+        var output = shallow(<Foo />);
 
-        var buttonText = XPathUtils.find(output, "string(.//p)");
+        var buttonText = find(output, "string(.//p)");
 
         Assert.equal(buttonText, "Hello world!");
       });
 
       it("should support returning number types", function () {
-        var output = Helper.shallow(<Foo />);
+        var output = shallow(<Foo />);
 
-        var nButtons = XPathUtils.find(output, "count(.//button)");
+        var nButtons = find(output, "count(.//button)");
 
         Assert.equal(nButtons, 1);
       });
 
       it("should support returning boolean types", function () {
-        var output = Helper.shallow(<Foo />);
+        var output = shallow(<Foo />);
 
-        var hasBarButton = XPathUtils.find(output, "count(.//button[contains(., 'Bar')]) = 1");
+        var hasBarButton = find(output, "count(.//button[contains(., 'Bar')]) = 1");
 
         Assert.equal(hasBarButton, true);
       });
@@ -66,7 +64,7 @@ describe("XPathReact", function () {
         Assert.throws(function () {
           var notReactElement = {foo: "bar"};
 
-          XPathUtils.find(notReactElement, "/*");
+          find(notReactElement, "/*");
         }, /Expected a React element/);
       });
     });
