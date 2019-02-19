@@ -11,7 +11,7 @@ REACT_VERSION=16
 clean-install:
 	rm -rf node_modules/
 	npm install
-	npm install --no-save react@${REACT_VERSION} react-dom@${REACT_VERSION} react-test-renderer@${REACT_VERSION} xpath-evaluator@3
+	npm install --no-save react@${REACT_VERSION} react-dom@${REACT_VERSION} react-test-renderer@${REACT_VERSION} xpath-evaluator@4
 
 lint:
 	$(ESLINT) .

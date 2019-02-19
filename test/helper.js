@@ -10,7 +10,7 @@ var ShallowRenderer = require("react-test-renderer/shallow");
 
 var XPathEvaluator = require("../lib");
 
-var XPathResult = XPathEvaluator.XPathResult;
+var { XPathResult } = require("xpath-evaluator");
 
 module.exports = {
   shallow: function (component) {
