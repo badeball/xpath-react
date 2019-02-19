@@ -1,4 +1,4 @@
-var Sinon = require("sinon");
+const Sinon = require("sinon");
 
 afterEach(function(){
   Sinon.restore();

@@ -2,9 +2,9 @@ import React from "react";
 
 import { assertEvaluatesToValue as unboundAssertEvaluatesToValue } from "./helper";
 
-var document = <h1 />;
+const document = <h1 />;
 
-var assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
+const assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
 
 suite("XPathDOM", function () {
   suite("boolean", function () {

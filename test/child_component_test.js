@@ -8,7 +8,7 @@ import createReactClass from "create-react-class";
 
 import { shallow } from "./helper";
 
-var Foo = function () {
+const Foo = function () {
   return (
     <div>
       <p>Hello world!</p>
@@ -16,7 +16,7 @@ var Foo = function () {
   );
 };
 
-var Bar = function () {
+const Bar = function () {
   return (
     <div>
       Foo: <Foo />
@@ -27,44 +27,44 @@ var Bar = function () {
 suite("XPathReact", function () {
   suite("child component", function () {
     test("unrendered child component", function () {
-      var document = shallow(<Bar />);
+      const document = shallow(<Bar />);
 
-      var expression = ".//Foo";
+      const expression = ".//Foo";
 
-      var result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
+      const result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Foo);
     });
 
     test("unrendered child component (complex)", function () {
-      var document = shallow(<Bar />);
+      const document = shallow(<Bar />);
 
-      var expression = "string(.//Foo/parent::*)";
+      const expression = "string(.//Foo/parent::*)";
 
-      var result = evaluate(expression, document, null, XPathResult.STRING_TYPE);
+      const result = evaluate(expression, document, null, XPathResult.STRING_TYPE);
 
       Assert.equal(result.stringValue, "Foo: ");
     });
 
     test("unrendered child component (createReactClass)", function () {
-      var Qux = createReactClass({
+      const Qux = createReactClass({
         displayName: "Qux",
         render: function () {
           return "Hello world!";
         }
       });
 
-      var Norf = createReactClass({
+      const Norf = createReactClass({
         render: function () {
           return <p><Qux /></p>;
         }
       });
 
-      var document = shallow(<Norf />);
+      const document = shallow(<Norf />);
 
-      var expression = ".//Qux";
+      const expression = ".//Qux";
 
-      var result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
+      const result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Qux);
     });
@@ -81,11 +81,11 @@ suite("XPathReact", function () {
         );
       }
 
-      var document = shallow(<Qux />);
+      const document = shallow(<Qux />);
 
-      var expression = "count(//p)";
+      const expression = "count(//p)";
 
-      var result = evaluate(expression, document, null, XPathResult.NUMBER_TYPE);
+      const result = evaluate(expression, document, null, XPathResult.NUMBER_TYPE);
 
       Assert.equal(result.numberValue, 4);
     });

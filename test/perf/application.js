@@ -2,21 +2,21 @@
 
 "use strict";
 
-var Benchmark = require("benchmark");
+const Benchmark = require("benchmark");
 
-var React = require("react");
+const React = require("react");
 
-var ReactDOM = require("react-dom");
+const ReactDOM = require("react-dom");
 
-var TestUtils = require("react-addons-test-utils");
+const TestUtils = require("react-addons-test-utils");
 
-var XPathReact = require("../../lib");
+const XPathReact = require("../../lib");
 
-var Suite = new Benchmark.Suite();
+const Suite = new Benchmark.Suite();
 
-var expression = ".//p[contains(., 'Hello world!')]";
+const expression = ".//p[contains(., 'Hello world!')]";
 
-var Foo = React.createClass({
+const Foo = React.createClass({
   render: function () {
     return (
       <div>
@@ -29,15 +29,15 @@ var Foo = React.createClass({
 Suite.
 
 add("document#evaluate", function () {
-  var component = ReactDOM.findDOMNode(TestUtils.renderIntoDocument(<Foo />));
+  const component = ReactDOM.findDOMNode(TestUtils.renderIntoDocument(<Foo />));
 
   document.evaluate(expression, component, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 }).
 
 add("XPathReact#evaluate", function () {
-  var renderer = TestUtils.createRenderer();
+  const renderer = TestUtils.createRenderer();
   renderer.render(<Foo />);
-  var output = renderer.getRenderOutput();
+  const output = renderer.getRenderOutput();
 
   XPathReact.evaluate(expression, output, null, XPathReact.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 }).

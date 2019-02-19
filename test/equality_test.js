@@ -2,7 +2,7 @@ import React from "react";
 
 import { assertEvaluatesToValue as unboundAssertEvaluatesToValue } from "./helper";
 
-var document = (
+const document = (
   <body>
     <div>
       <span>a</span>
@@ -19,7 +19,7 @@ var document = (
   </body>
 );
 
-var assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
+const assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
 
 suite("XPathDOM", function () {
   suite("equality", function () {

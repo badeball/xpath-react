@@ -5,7 +5,7 @@ import {
   assertEvaluatesToValue as unboundAssertEvaluatesToValue
 } from "./helper";
 
-var document = (
+const document = (
   <html>
     <body>
       <div id='id1'>foo</div>
@@ -47,9 +47,9 @@ var document = (
   </html>
 );
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
-var assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
+const assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
 
 suite("XPathReact", function () {
   suite("misc", function () {

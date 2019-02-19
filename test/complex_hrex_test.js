@@ -3,7 +3,7 @@ import React from "react";
 import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
 /* eslint-disable no-script-url */
-var document = (
+const document = (
   <html>
     <body>
       <a id='id0-0' href='javascript:doFoo(a, b)'>foo</a>
@@ -17,7 +17,7 @@ var document = (
 );
 /* eslint-ena enable no-script-url */
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("complex href", function () {
