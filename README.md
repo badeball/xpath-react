@@ -28,7 +28,7 @@ $ npm install xpath-react
 ```
 
 React is a peer dependency and is expected to be available. The library is
-compatible with both react-15.x.x and react-16.x.x.
+compatible with both react-15.5.x and react-16.x.x.
 
 ```
 $ npm install react
