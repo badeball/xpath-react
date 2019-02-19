@@ -2,11 +2,15 @@
   "name": "xpath-react",
   "version": "5.0.0",
   "description": "A React adapter for xpath-evaluator.",
-  "main": "lib/index.js",
+  "main": "dist/xpath-react.cjs.js",
+  "module": "dist/xpath-react.esm.js",
   "author": "Jonas Amundsen <jonasba@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git://github.com/badeball/xpath-react.git"
+  },
+  "scripts": {
+    "prepublishOnly": "make ensure-built"
   },
   "peerDependencies": {
     "react": "^15.5.0 || ^16.0.0",
@@ -18,11 +22,11 @@
     "eslint": "1.9.0",
     "eslint-plugin-react": "3.8.0",
     "istanbul": "0.3.22",
-    "mocha": "2.3.0"
+    "mocha": "2.3.0",
+    "rollup": "^1.2.2"
   },
   "files": [
-    "utils.js",
-    "lib"
+    "dist"
   ],
   "license": "MIT"
 }

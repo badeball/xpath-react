@@ -15,8 +15,8 @@ XPath 1.0 expressions and thus testing it without a real DOM.
 
 * [Installation](#installation)
 * [Usage](#usage)
-  * [evaluate](#xpathevaluate)
-  * [find](#xpathutilsfind)
+  * [evaluate()](#xpathevaluate)
+  * [find()](#xpathutilsfind)
 * [Known issues & limitations](#known-issues--limitations)
 
 ## Installation
@@ -43,10 +43,10 @@ practical example can be found in [example/][example].
 
 [example]: example/
 
-### XPath.evaluate
+### evaluate()
 
 ```
-XPathResult XPath.evaluate (
+XPathResult evaluate (
   DOMString expression,
   ReactElement contextNode,
   XPathNSResolver resolver,
@@ -61,7 +61,7 @@ but accepts a `ReactElement` instead of a `Node`.
 #### Example
 
 ```javascript
-var XPath = require("xpath-react");
+var { evaluate, XPathResult } = require("xpath-react");
 
 var Foo = (
   <ul>
@@ -70,17 +70,17 @@ var Foo = (
   </ul>
 );
 
-var result = XPath.evaluate("string(.//li[1])", Foo, null, XPath.XPathResult.STRING_TYPE);
+var result = evaluate("string(.//li[1])", Foo, null, XPathResult.STRING_TYPE);
 
 result.stringValue; // => "bar"
 ```
 
 [document-evaluate]: https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate
 
-### XPathUtils.find
+### find()
 
 ```
-(ReactElement | String | Number | Boolean) XPathUtils.find (
+(ReactElement | String | Number | Boolean) find (
   ReactElement element,
   DOMString expression
 )
@@ -95,7 +95,7 @@ conditions, respectively).
 ```javascript
 var ShallowRenderer = require("react-test-renderer/shallow");
 
-var XPathUtils = require("xpath-react/utils");
+var { find } = require("xpath-react");
 
 function shallow (component) {
   var renderer = new ShallowRenderer();
@@ -115,10 +115,10 @@ var Foo = React.createClass({
 
 var output = shallow(<Foo />);
 
-XPathUtils.find(output, ".//p"); // => ReactElement { type: "p", ... }
-XPathUtils.find(output, "string(.//p)"); // => "Hello world!"
-XPathUtils.find(output, "count(.//p)"); // => 1
-XPathUtils.find(output, "count(.//p) = 1"); // => true
+find(output, ".//p"); // => ReactElement { type: "p", ... }
+find(output, "string(.//p)"); // => "Hello world!"
+find(output, "count(.//p)"); // => 1
+find(output, "count(.//p) = 1"); // => true
 ```
 
 You can also use it to assert presence of unrendered child components, as shown
@@ -137,7 +137,7 @@ var Bar = React.createClass({
 
 var output = shallow(<Bar />);
 
-XPathUtils.find(output, "count(.//Foo)"); // => 1
+find(output, "count(.//Foo)"); // => 1
 ```
 
 ## Known issues & limitations

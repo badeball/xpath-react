@@ -1,5 +1,6 @@
 MOCHA := ./node_modules/.bin/_mocha
 ESLINT := ./node_modules/.bin/eslint
+ROLLUP := ./node_modules/.bin/rollup
 ISTANBUL := ./node_modules/.bin/istanbul
 
 all: lint test
@@ -22,4 +23,10 @@ test:
 test-cover:
 	$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
-.PHONY: clean-install lint test test-cover
+build:
+	$(ROLLUP) --config
+
+ensure-built: build
+	[ -z "$(shell git status -s dist/)" ]
+
+.PHONY: clean-install lint test test-cover build ensure-built

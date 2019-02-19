@@ -1,12 +1,10 @@
-"use strict";
+import React from "react";
 
-var React = require("react");
-
-var Helper = require("./helper");
+import { assertEvaluatesToValue as unboundAssertEvaluatesToValue } from "./helper";
 
 var document = <h1 />;
 
-var assertEvaluatesToValue = Helper.assertEvaluatesToValue.bind(null, document);
+var assertEvaluatesToValue = unboundAssertEvaluatesToValue.bind(null, document);
 
 suite("XPathDOM", function () {
   suite("boolean", function () {

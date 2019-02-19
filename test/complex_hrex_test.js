@@ -1,8 +1,6 @@
-"use strict";
+import React from "react";
 
-var React = require("react");
-
-var Helper = require("./helper");
+import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
 /* eslint-disable no-script-url */
 var document = (
@@ -19,7 +17,7 @@ var document = (
 );
 /* eslint-ena enable no-script-url */
 
-var assertEvaluatesToNodeSet = Helper.assertEvaluatesToNodeSet.bind(null, document);
+var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("complex href", function () {

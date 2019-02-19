@@ -1,14 +1,10 @@
-"use strict";
+import Assert from "assert";
 
-var Assert = require("assert");
+import { evaluate, XPathResult } from "../lib";
 
-var XPathEvaluator = require("../lib");
+import React from "react";
 
-var { XPathResult } = require("xpath-evaluator");
-
-var React = require("react");
-
-var Helper = require("./helper");
+import { shallow } from "./helper";
 
 var Foo = function () {
   return (
@@ -29,21 +25,21 @@ var Bar = function () {
 suite("XPathReact", function () {
   suite("child component", function () {
     test("unrendered child component", function () {
-      var document = Helper.shallow(<Bar />);
+      var document = shallow(<Bar />);
 
       var expression = ".//Foo";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
+      var result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Foo);
     });
 
     test("unrendered child component (complex)", function () {
-      var document = Helper.shallow(<Bar />);
+      var document = shallow(<Bar />);
 
       var expression = "string(.//Foo/parent::*)";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.STRING_TYPE);
+      var result = evaluate(expression, document, null, XPathResult.STRING_TYPE);
 
       Assert.equal(result.stringValue, "Foo: ");
     });
@@ -65,11 +61,11 @@ suite("XPathReact", function () {
         }
       });
 
-      var document = Helper.shallow(<Norf />);
+      var document = shallow(<Norf />);
 
       var expression = ".//Qux";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
+      var result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
       Assert.equal(result.singleNodeValue.type, Qux);
     });
@@ -86,11 +82,11 @@ suite("XPathReact", function () {
         );
       }
 
-      var document = Helper.shallow(<Qux />);
+      var document = shallow(<Qux />);
 
       var expression = "count(//p)";
 
-      var result = XPathEvaluator.evaluate(expression, document, null, XPathResult.NUMBER_TYPE);
+      var result = evaluate(expression, document, null, XPathResult.NUMBER_TYPE);
 
       Assert.equal(result.numberValue, 4);
     });

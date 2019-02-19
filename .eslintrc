@@ -1,6 +1,7 @@
 {
   "ecmaFeatures": {
-    "jsx": true
+    "jsx": true,
+    "modules": true
   },
   "rules": {
     "indent": [2, 2, {"SwitchCase": 1, "VariableDeclarator": 2}],
