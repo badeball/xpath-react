@@ -5,7 +5,6 @@ env:
   - REACT_VERSION=15
   - REACT_VERSION=16
 script:
-  - npm install xpath-evaluator
   - npm install react@$REACT_VERSION
   - npm install react-dom@$REACT_VERSION
   - npm install react-test-renderer@$REACT_VERSION

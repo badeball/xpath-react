@@ -13,15 +13,16 @@
     "prepublishOnly": "make ensure-built"
   },
   "peerDependencies": {
-    "react": "^15.5.0 || ^16.0.0",
-    "xpath-evaluator": "^4.0.1"
+    "react": "^15.5.0 || ^16.0.0"
   },
   "devDependencies": {
     "babel": "5.8.23",
     "codeclimate-test-reporter": "0.1.1",
     "istanbul": "0.3.22",
     "mocha": "2.3.0",
-    "rollup": "^1.2.2"
+    "rollup": "^1.2.2",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "xpath-evaluator": "^4.0.1"
   },
   "files": [
     "dist"

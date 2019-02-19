@@ -1,7 +1,9 @@
+import resolve from "rollup-plugin-node-resolve";
+
 import pkg from "./package.json";
 
 export default {
-  external: ["react", "xpath-evaluator"],
+  external: ["react"],
   input: "lib/index.js",
   output: [
     {
@@ -13,5 +15,10 @@ export default {
       file: pkg.module,
       format: "es"
     }
+  ],
+  plugins: [
+    resolve({
+      module: true
+    })
   ]
 };

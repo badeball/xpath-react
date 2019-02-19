@@ -27,11 +27,11 @@ The package can be installed with `npm`.
 $ npm install xpath-react
 ```
 
-A couple peer dependencies is expected to be available. The library is
+React is a peer dependency and is expected to be available. The library is
 compatible with both react-15.x.x and react-16.x.x.
 
 ```
-$ npm install xpath-evaluator react
+$ npm install react
 ```
 
 ## Usage
