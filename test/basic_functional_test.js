@@ -2,7 +2,7 @@ import React from "react";
 
 import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
-var document = (
+const document = (
   <div id='n1' title='1' className='26'>
     <dl id='n2' title='2' className='3'>
       <dt id='n3' title='3' className='1'>dt</dt>
@@ -43,7 +43,7 @@ var document = (
   </div>
 );
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("basic functional", function () {

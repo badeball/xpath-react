@@ -2,7 +2,7 @@ import React from "react";
 
 import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
-var document = (
+const document = (
   <html>
     <body>
       <svg id='svg' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 1000 50'>
@@ -14,7 +14,7 @@ var document = (
   </html>
 );
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 // TODO: Use a namespace prefix once support for namespaces are implemented.
 

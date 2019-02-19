@@ -61,16 +61,16 @@ but accepts a `ReactElement` instead of a `Node`.
 #### Example
 
 ```javascript
-var { evaluate, XPathResult } = require("xpath-react");
+import { evaluate, XPathResult } from "xpath-react";
 
-var Foo = (
+const Foo = (
   <ul>
     <li>bar</li>
     <li>baz</li>
   </ul>
 );
 
-var result = evaluate("string(.//li[1])", Foo, null, XPathResult.STRING_TYPE);
+const result = evaluate("string(.//li[1])", Foo, null, XPathResult.STRING_TYPE);
 
 result.stringValue; // => "bar"
 ```
@@ -93,27 +93,27 @@ conditions, respectively).
 ##### Example
 
 ```javascript
-var ShallowRenderer = require("react-test-renderer/shallow");
+import ShallowRenderer from "react-test-renderer/shallow";
 
-var { find } = require("xpath-react");
+import { find } from "xpath-react";
 
 function shallow (component) {
-  var renderer = new ShallowRenderer();
+  const renderer = new ShallowRenderer();
   renderer.render(component);
   return renderer.getRenderOutput();
 }
 
-var Foo = React.createClass({
-  render: function () {
+class Foo extends React.Component {
+  render() {
     return (
       <div>
         <p>Hello world!</p>
       </div>
     );
   }
-});
+}
 
-var output = shallow(<Foo />);
+const output = shallow(<Foo />);
 
 find(output, ".//p"); // => ReactElement { type: "p", ... }
 find(output, "string(.//p)"); // => "Hello world!"
@@ -125,17 +125,17 @@ You can also use it to assert presence of unrendered child components, as shown
 below. This assumes that the child component has a `displayName` property.
 
 ```javascript
-var Bar = React.createClass({
-  render: function () {
+class Bar extends React.Component {
+  render() {
     return (
       <div>
         <Foo />
       </div>
     );
   }
-});
+}
 
-var output = shallow(<Bar />);
+const output = shallow(<Bar />);
 
 find(output, "count(.//Foo)"); // => 1
 ```

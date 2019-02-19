@@ -1,11 +1,11 @@
 "use strict";
 
-var babelify = require("babelify"),
+const babelify = require("babelify"),
     browserify = require("browserify"),
     express = require("express"),
     path = require("path");
 
-var application = express();
+const application = express();
 
 application.get("/application.js", function (request, response) {
   browserify(path.join(__dirname, "application.js")).transform(babelify).bundle().pipe(response);

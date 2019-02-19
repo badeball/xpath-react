@@ -2,7 +2,7 @@ import React from "react";
 
 import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
-var document = (
+const document = (
   <html>
     <head>
       <title>Title</title>
@@ -24,7 +24,7 @@ var document = (
   </html>
 );
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("sort and merge", function () {

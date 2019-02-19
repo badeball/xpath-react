@@ -1,6 +1,6 @@
-var React = require("react");
+const React = require("react");
 
-var PropTypes = require("prop-types");
+const PropTypes = require("prop-types");
 
 function List (props) {
   return (

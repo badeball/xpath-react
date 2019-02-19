@@ -2,7 +2,7 @@ import React from "react";
 
 import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./helper";
 
-var document = (
+const document = (
   <html>
     <body>
       <div id='with' price='2' count='3'></div>
@@ -11,7 +11,7 @@ var document = (
   </html>
 );
 
-var assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
+const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, document);
 
 suite("XPathReact", function () {
   suite("math", function () {
