@@ -25,7 +25,7 @@ const document = (
           <del id='n15' title='15' className='11'>del</del>
           <ins id='n16' title='16' className='12'>ins</ins>
         </p>
-        <font id='n17' title='17' className='14' face='n8 n26'>font</font>
+        <input id='n17' title='17' className='14' form='n8 n26'>input</input>
       </blockquote>
       <h3 id='n18' title='18' className='18'>
         <dfn id='n19' title='19' className='16'>dfn</dfn>
@@ -48,11 +48,11 @@ const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, docu
 suite("XPathReact", function () {
   suite("basic functional", function () {
     test("00", function () {
-      assertEvaluatesToNodeSet(".//blockquote/*", ["br", "p", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/*", ["br", "p", "input"]);
     });
 
     test("01", function () {
-      assertEvaluatesToNodeSet(".//blockquote/child::*", ["br", "p", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/child::*", ["br", "p", "input"]);
     });
 
     test("02", function () {
@@ -60,11 +60,11 @@ suite("XPathReact", function () {
     });
 
     test("03", function () {
-      assertEvaluatesToNodeSet(".//blockquote/descendant::*", ["br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/descendant::*", ["br", "p", "del", "ins", "input"]);
     });
 
     test("04", function () {
-      assertEvaluatesToNodeSet(".//blockquote/descendant-or-self::*", ["blockquote", "br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/descendant-or-self::*", ["blockquote", "br", "p", "del", "ins", "input"]);
     });
 
     test("05", function () {
@@ -112,7 +112,7 @@ suite("XPathReact", function () {
     });
 
     test("16", function () {
-      assertEvaluatesToNodeSet(".//*[parent::blockquote]", ["br", "p", "font"]);
+      assertEvaluatesToNodeSet(".//*[parent::blockquote]", ["br", "p", "input"]);
     });
 
     test("17", function () {
@@ -124,11 +124,11 @@ suite("XPathReact", function () {
     });
 
     test("19", function () {
-      assertEvaluatesToNodeSet(".//*[ancestor::blockquote]", ["br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//*[ancestor::blockquote]", ["br", "p", "del", "ins", "input"]);
     });
 
     test("20", function () {
-      assertEvaluatesToNodeSet(".//*[ancestor-or-self::blockquote]", ["blockquote", "br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//*[ancestor-or-self::blockquote]", ["blockquote", "br", "p", "del", "ins", "input"]);
     });
 
     test("21", function () {
@@ -152,11 +152,11 @@ suite("XPathReact", function () {
     });
 
     test("26", function () {
-      assertEvaluatesToNodeSet(".//*[@id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[@id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "input", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("27", function () {
-      assertEvaluatesToNodeSet(".//*[attribute::id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[attribute::id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "input", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("28", function () {
@@ -171,15 +171,15 @@ suite("XPathReact", function () {
     });
 
     test("30", function () {
-      assertEvaluatesToNodeSet(".//blockquote/*", ["br", "p", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/*", ["br", "p", "input"]);
     });
 
     test("31", function () {
-      assertEvaluatesToNodeSet(".//*[child::* and preceding::font]", ["h3", "h4", "span"]);
+      assertEvaluatesToNodeSet(".//*[child::* and preceding::input]", ["h3", "h4", "span"]);
     });
 
     test("32", function () {
-      assertEvaluatesToNodeSet(".//*[not(child::*) and preceding::font]", ["dfn", "a", "sub", "sup", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[not(child::*) and preceding::input]", ["dfn", "a", "sub", "sup", "article", "q"]);
     });
 
     test("33", function () {
@@ -187,7 +187,7 @@ suite("XPathReact", function () {
     });
 
     test("34", function () {
-      assertEvaluatesToNodeSet(".//blockquote/ancestor::* | .//blockquote/descendant::*", ["div", "menu", "br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//blockquote/ancestor::* | .//blockquote/descendant::*", ["div", "menu", "br", "p", "del", "ins", "input"]);
     });
 
     test("35", function () {
@@ -195,15 +195,15 @@ suite("XPathReact", function () {
     });
 
     test("36", function () {
-      assertEvaluatesToNodeSet(".//*[@title > 12 and @class < 15]", ["br", "p", "del", "ins", "font"]);
+      assertEvaluatesToNodeSet(".//*[@title > 12 and @class < 15]", ["br", "p", "del", "ins", "input"]);
     });
 
     test("37", function () {
-      assertEvaluatesToNodeSet(".//*[@title != @class]", ["div", "dl", "dt", "dd", "menu", "em", "strong", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "dfn", "a", "sub", "sup", "span", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[@title != @class]", ["div", "dl", "dt", "dd", "menu", "em", "strong", "b", "s", "blockquote", "br", "p", "del", "ins", "input", "dfn", "a", "sub", "sup", "span", "article", "q"]);
     });
 
     test("38", function () {
-      assertEvaluatesToNodeSet(".//*[((@class * @class + @title * @title) div (@class + @title)) > ((@class - @title) * (@class - @title))]", ["dl", "h1", "h2", "s", "blockquote", "br", "p", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[((@class * @class + @title * @title) div (@class + @title)) > ((@class - @title) * (@class - @title))]", ["dl", "h1", "h2", "s", "blockquote", "br", "p", "input", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("39", function () {
@@ -211,7 +211,7 @@ suite("XPathReact", function () {
     });
 
     test("40", function () {
-      assertEvaluatesToNodeSet(".//blockquote/child::*[last()]", ["font"]);
+      assertEvaluatesToNodeSet(".//blockquote/child::*[last()]", ["input"]);
     });
 
     test("41", function () {
@@ -219,7 +219,7 @@ suite("XPathReact", function () {
     });
 
     test("42", function () {
-      assertEvaluatesToNodeSet("id(.//font/@face)", ["strong", "q"]);
+      assertEvaluatesToNodeSet("id(.//input/@form)", ["strong", "q"]);
     });
 
     test("45", function () {
@@ -296,7 +296,7 @@ suite("XPathReact", function () {
     });
 
     test("63", function () {
-      assertEvaluatesToNodeSet(".//*[substring-after(.,'on') = 't']", ["blockquote", "font"]);
+      assertEvaluatesToNodeSet(".//*[substring-after(.,'pu') = 't']", ["blockquote", "input"]);
     });
 
     test("64", function () {
@@ -344,7 +344,7 @@ suite("XPathReact", function () {
     });
 
     test("75", function () {
-      assertEvaluatesToNodeSet(".//*[floor(@title div @class) = 1]", ["h1", "em", "strong", "h2", "b", "s", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[floor(@title div @class) = 1]", ["h1", "em", "strong", "h2", "b", "s", "br", "p", "del", "ins", "input", "h3", "dfn", "a", "h4", "sub", "sup", "article", "q"]);
     });
 
     test("76", function () {
@@ -352,7 +352,7 @@ suite("XPathReact", function () {
     });
 
     test("77", function () {
-      assertEvaluatesToNodeSet(".//*[round(@title div @class) = 1]", ["dl", "h1", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
+      assertEvaluatesToNodeSet(".//*[round(@title div @class) = 1]", ["dl", "h1", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "input", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("78", function () {
