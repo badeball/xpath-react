@@ -19,8 +19,8 @@ const document = (
           <br id='pSib' />
           <input name='foo' id='bar' className='input-1' />
           <input name='bar' id='foo' className='input-2' />
-          <img name='hoge' id='fuga' className='img-1' />
-          <img name='fuga' id='hoge' className='img-2' />
+          <img id='fuga' className='img-1' />
+          <img id='hoge' className='img-2' />
           <br id='nSib' />
           Share your codes!
           <input htmlFor='foo' />
