@@ -4,6 +4,8 @@ import { evaluate, XPathResult } from "../lib";
 
 import React from "react";
 
+import createReactClass from "create-react-class";
+
 import { shallow } from "./helper";
 
 var Foo = function () {
@@ -44,18 +46,15 @@ suite("XPathReact", function () {
       Assert.equal(result.stringValue, "Foo: ");
     });
 
-    test("unrendered child component (createClass)", function () {
-      if (!React.createClass) {
-        return this.skip();
-      }
-
-      var Qux = React.createClass({
+    test("unrendered child component (createReactClass)", function () {
+      var Qux = createReactClass({
+        displayName: "Qux",
         render: function () {
           return "Hello world!";
         }
       });
 
-      var Norf = React.createClass({
+      var Norf = createReactClass({
         render: function () {
           return <p><Qux /></p>;
         }
