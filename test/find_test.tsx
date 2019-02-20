@@ -6,7 +6,7 @@ import React from "react";
 
 import { shallow } from "./helper";
 
-const Foo = function (props) {
+const Foo = function (props: { onClick?: () => {}}) {
   return (
     <div>
       <p>Hello world!</p>
@@ -25,7 +25,7 @@ describe("XPathReact", function () {
 
         const p = find(output, ".//p");
 
-        Assert.equal(p.props.children, "Hello world!");
+        Assert.equal((p as React.ReactElement).props.children, "Hello world!");
       });
 
       it("should return null when no elements match the expression", function () {
@@ -64,7 +64,7 @@ describe("XPathReact", function () {
         Assert.throws(function () {
           const notReactElement = {foo: "bar"};
 
-          find(notReactElement, "/*");
+          find(notReactElement as any as React.ReactElement, "/*");
         }, /Expected a React element/);
       });
     });

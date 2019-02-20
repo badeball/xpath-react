@@ -2,12 +2,16 @@ import { isValidElement } from "react";
 
 import { DOCUMENT_NODE } from "xpath-evaluator";
 
+import { IAbstractDocumentElement, IReactElementAdapter } from "./react_element_adapter";
+
 import ReactElement from "./react_element";
 
 import compareDocumentPosition from "./compare_document_position";
 
-export default class ReactDocument {
-  constructor(nativeNode) {
+export default class ReactDocument implements IAbstractDocumentElement {
+  private readonly elementNode: ReactElement;
+
+  constructor(nativeNode: React.ReactElement) {
     if (!isValidElement(nativeNode)) {
       throw new Error("Expected a React element");
     }
@@ -19,11 +23,11 @@ export default class ReactDocument {
     return "0";
   }
 
-  isEqual(node) {
+  isEqual(node: IReactElementAdapter) {
     return this.getId() === node.getId();
   }
 
-  getNativeNode() {
+  getNativeNode(): React.ReactElement {
     throw new Error("Accessing the abstract document node is not allowed");
   }
 
@@ -43,27 +47,31 @@ export default class ReactDocument {
     return [this.elementNode];
   }
 
-  getFollowingSiblings() {
-    return undefined;
+  getParent(): IReactElementAdapter {
+    throw new Error("Unexpcted call to ReactDocument.getParent()");
   }
 
-  getPrecedingSiblings() {
-    return undefined;
+  getFollowingSiblings(): IReactElementAdapter[] {
+    return [];
   }
 
-  getName() {
-    return undefined;
+  getPrecedingSiblings(): IReactElementAdapter[] {
+    return [];
   }
 
-  getAttributes() {
-    return undefined;
+  getName(): string {
+    return undefined as any as string;
   }
 
-  getOwnerDocument() {
-    return undefined;
+  getAttributes(): IReactElementAdapter[] {
+    return [];
   }
 
-  getElementById(id) {
+  getOwnerDocument(): IAbstractDocumentElement {
+    return this;
+  }
+
+  getElementById(id: string) {
     return this.elementNode._getElementById(id);
   }
 
@@ -71,7 +79,7 @@ export default class ReactDocument {
     return "Node<document>";
   }
 
-  compareDocumentPosition(other) {
+  compareDocumentPosition(other: IReactElementAdapter): 1 | 0 | -1 {
     return compareDocumentPosition(this, other);
   }
 }

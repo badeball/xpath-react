@@ -93,12 +93,12 @@ conditions, respectively).
 ##### Example
 
 ```javascript
-import ShallowRenderer from "react-test-renderer/shallow";
+import { createRenderer } from "react-test-renderer/shallow";
 
 import { find } from "xpath-react";
 
 function shallow (component) {
-  const renderer = new ShallowRenderer();
+  const renderer = createRenderer();
   renderer.render(component);
   return renderer.getRenderOutput();
 }

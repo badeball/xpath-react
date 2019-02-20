@@ -1,57 +1,59 @@
 import assert from "assert";
 
-import ShallowRenderer from "react-test-renderer/shallow";
+import { createRenderer } from "react-test-renderer/shallow";
 
 import { evaluate, XPathResult } from "../lib";
 
-export function shallow (component) {
-  const renderer = new ShallowRenderer();
+export function shallow (component: React.ReactElement) {
+  const renderer = createRenderer();
   renderer.render(component);
   return renderer.getRenderOutput();
 }
 
-export function assertEvaluatesToNodeSet (contextNode, expression, nodes) {
+export function assertEvaluatesToNodeSet (contextNode: React.ReactElement, expression: string, nodes: string[]) {
   const result = evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE);
 
   let match;
 
   for (let i = 0; i < result.snapshotLength; i++) {
-    if (result.snapshotItem(i).type) {
+    const item = result.snapshotItem(i);
+
+    if (typeof item !== "string") {
       match = nodes[i].match(/(\w+)(?:#([^.]+))?(?:\.([\w\d-]+))?/);
 
-      const tagName = match[1],
-            idName = match[2],
-            className = match[3];
+      const tagName = match![1],
+            idName = match![2],
+            className = match![3];
 
       if (tagName) {
-        assert.equal(result.snapshotItem(i).type, tagName);
+        assert.equal(item!.type, tagName);
       }
 
       if (idName) {
-        assert.equal(result.snapshotItem(i).props.id, idName);
+        assert.equal(item!.props.id, idName);
       }
 
       if (className) {
-        assert.equal(result.snapshotItem(i).props.className, className);
+        assert.equal(item!.props.className, className);
       }
     } else {
       match = nodes[i].match(/^(\w+)(?:\(([^\)]*)\))?$/);
 
-      const nodeType = match[1],
-            nodeValue = match[2];
+      const nodeType = match![1],
+            nodeValue = match![2];
 
       if (nodeType !== "text") {
         throw new Error("Unable to make assertions about anything other than text nodes");
       }
 
-      assert.equal(result.snapshotItem(i), nodeValue);
+      assert.equal(item, nodeValue);
     }
   }
 
   assert.equal(result.snapshotLength, nodes.length);
 }
 
-export function assertEvaluatesToValue (contextNode, expression, value) {
+export function assertEvaluatesToValue (contextNode: React.ReactElement, expression: string, value: number | string | boolean) {
   const result = evaluate(expression, contextNode, null, XPathResult.ANY_TYPE);
 
   switch (result.resultType) {

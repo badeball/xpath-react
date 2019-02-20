@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "newLine": "LF",
+    "strictNullChecks": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "jsx": "react"
+  }
+}

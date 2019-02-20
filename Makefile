@@ -11,10 +11,10 @@ lint:
 	false
 
 test:
-	$(MOCHA) --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
+	$(MOCHA) --reporter dot --ui tdd --require ts-node/register/transpile-only "test/**/*_test.tsx"
 
 test-cover:
-	$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
+	$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --require ts-node/register/transpile-only "test/**/*_test.tsx"
 
 build:
 	@$(ROLLUP) --config

@@ -1,23 +1,25 @@
 import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE } from "xpath-evaluator";
 
+import { IReactElementAdapter } from "./react_element_adapter";
+
 import ReactAttribute from "./react_attribute";
 
 import ReactText from "./react_text";
 
 import compareDocumentPosition from "./compare_document_position";
 
-export default class ReactElement {
-  constructor(nativeNode, parent, nChild) {
-    this.nativeNode = nativeNode;
-    this.parent = parent;
-    this.nChild = nChild;
-  }
+export default class ReactElement implements IReactElementAdapter {
+  constructor(
+    private readonly nativeNode: React.ReactElement,
+    private readonly parent: IReactElementAdapter,
+    private readonly nChild: number
+  ) { }
 
   getId() {
     return this.getParent().getId() + "." + this.nChild;
   }
 
-  isEqual(node) {
+  isEqual(node: IReactElementAdapter) {
     return this.getId() === node.getId();
   }
 
@@ -50,14 +52,30 @@ export default class ReactElement {
     return this.parent;
   }
 
-  getChildNodes() {
+  getChildNodes(): IReactElementAdapter[] {
+    if (this.nativeNode == null) {
+      return [];
+    }
+
+    if (typeof this.nativeNode === "string") {
+      return [];
+    }
+
+    if (typeof this.nativeNode === "number") {
+      return [];
+    }
+
+    if (typeof this.nativeNode === "boolean") {
+      return [];
+    }
+
     if (!this.nativeNode.props || !this.nativeNode.props.children) {
       return [];
     }
 
-    const children = [];
+    const children: IReactElementAdapter[] = [];
 
-    const addChild = (child, i) => {
+    const addChild = (child: React.ReactElement, i: number) => {
       if (child) {
         if (typeof child === "string") {
           children.push(new ReactText(child, this, i));
@@ -67,11 +85,11 @@ export default class ReactElement {
       }
     };
 
-    function flatten (array) {
+    function flatten<T> (array: T[]): T[] {
       return array.reduce(function(memo, el) {
-        const items = Array.isArray(el) ? flatten(el) : [el];
+        const items: T[] = Array.isArray(el) ? flatten(el) : [el];
         return memo.concat(items);
-      }, []);
+      }, [] as T[]);
     }
 
     const flattenedChildren = flatten([this.nativeNode.props.children]);
@@ -119,8 +137,10 @@ export default class ReactElement {
     if (typeof this.nativeNode.type === "string") {
       return this.nativeNode.type;
     } else if (typeof this.nativeNode.type === "function") {
-      return this.nativeNode.type.displayName || this.nativeNode.type.name;
+      return (this.nativeNode.type as any).displayName || this.nativeNode.type.name;
     }
+
+    throw Error("Unable to determine Component's name");
   }
 
   getAttributes() {
@@ -128,7 +148,7 @@ export default class ReactElement {
       return [];
     }
 
-    const attributes = [];
+    const attributes: ReactAttribute[] = [];
 
     let i = 0;
 
@@ -149,14 +169,18 @@ export default class ReactElement {
     }
   }
 
-  _getElementById(id) {
+  getElementById(id: string) {
+    return this.getOwnerDocument().getElementById(id);
+  }
+
+  _getElementById(id: string): ReactElement | null {
     if (this.nativeNode.props && this.nativeNode.props.id === id) {
       return this;
     } else {
       const children = this.getChildNodes();
 
       for (let child of children) {
-        if (child.getNodeType() === ELEMENT_NODE) {
+        if (child instanceof ReactElement) {
           const elementWithId = child._getElementById(id);
 
           if (elementWithId) {
@@ -164,6 +188,8 @@ export default class ReactElement {
           }
         }
       }
+
+      return null;
     }
   }
 
@@ -183,7 +209,7 @@ export default class ReactElement {
     return "Node<" + name + ">";
   }
 
-  compareDocumentPosition(other) {
+  compareDocumentPosition(other: IReactElementAdapter): 1 | 0 | -1 {
     return compareDocumentPosition(this, other);
   }
 }

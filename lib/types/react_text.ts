@@ -1,19 +1,21 @@
 import { TEXT_NODE } from "xpath-evaluator";
 
+import { IReactElementAdapter } from "./react_element_adapter";
+
 import compareDocumentPosition from "./compare_document_position";
 
-export default class ReactText {
-  constructor (textContent, parent, nChild) {
-    this.textContent = textContent;
-    this.parent = parent;
-    this.nChild = nChild;
-  }
+export default class ReactText implements IReactElementAdapter {
+  constructor (
+    private readonly textContent: string,
+    private readonly parent: IReactElementAdapter,
+    private readonly nChild: number
+  ) { }
 
   getId() {
     return this.getParent().getId() + "." + this.nChild;
   }
 
-  isEqual(node) {
+  isEqual(node: IReactElementAdapter) {
     return this.getId() === node.getId();
   }
 
@@ -37,8 +39,9 @@ export default class ReactText {
     return this.parent;
   }
 
-  getChildNodes() {
-    return undefined;
+  getChildNodes(): IReactElementAdapter[] {
+    return [];
+    throw new Error("Unexpcted call to ReactText.getChildNodes()");
   }
 
   getFollowingSiblings() {
@@ -73,23 +76,29 @@ export default class ReactText {
     return precedingSiblings;
   }
 
-  getName() {
-    return undefined;
+  getName(): string {
+    return undefined as any as string;
+    throw new Error("Unexpcted call to ReactText.getName()");
   }
 
-  getAttributes() {
-    return undefined;
+  getAttributes(): IReactElementAdapter[] {
+    return [];
+    throw new Error("Unexpcted call to ReactText.getAttributes()");
   }
 
   getOwnerDocument() {
     return this.getParent().getOwnerDocument();
   }
 
+  getElementById(id: string) {
+    return this.getOwnerDocument().getElementById(id);
+  }
+
   toString() {
     return "Node<text(" + this.textContent + ")>";
   }
 
-  compareDocumentPosition(other) {
+  compareDocumentPosition(other: IReactElementAdapter): 1 | 0 | -1 {
     return compareDocumentPosition(this, other);
   }
 }

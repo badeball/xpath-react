@@ -33,7 +33,7 @@ suite("XPathReact", function () {
 
       const result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
-      Assert.equal(result.singleNodeValue.type, Foo);
+      Assert.equal((result.singleNodeValue as React.ReactElement).type, Foo);
     });
 
     test("unrendered child component (complex)", function () {
@@ -66,7 +66,7 @@ suite("XPathReact", function () {
 
       const result = evaluate(expression, document, null, XPathResult.ANY_UNORDERED_NODE_TYPE);
 
-      Assert.equal(result.singleNodeValue.type, Qux);
+      Assert.equal((result.singleNodeValue as React.ReactElement).type, Qux);
     });
 
     test("two-dimensional child components", function () {
