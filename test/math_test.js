@@ -5,8 +5,8 @@ import { assertEvaluatesToNodeSet as unboundAssertEvaluatesToNodeSet } from "./h
 const document = (
   <html>
     <body>
-      <div id='with' price='2' count='3'></div>
-      <div id='without' price='2' count='4'></div>
+      <div id='with' x-price='2' x-count='3'></div>
+      <div id='without' x-price='2' x-count='4'></div>
     </body>
   </html>
 );
@@ -16,11 +16,11 @@ const assertEvaluatesToNodeSet = unboundAssertEvaluatesToNodeSet.bind(null, docu
 suite("XPathReact", function () {
   suite("math", function () {
     test("00", function () {
-      assertEvaluatesToNodeSet("//*[@price * (@count + @count) = 12]", ["div#with"]);
+      assertEvaluatesToNodeSet("//*[@x-price * (@x-count + @x-count) = 12]", ["div#with"]);
     });
 
     test("01", function () {
-      assertEvaluatesToNodeSet("//*[@price * @count + @count = 12]", ["div#without"]);
+      assertEvaluatesToNodeSet("//*[@x-price * @x-count + @x-count = 12]", ["div#without"]);
     });
   });
 });
