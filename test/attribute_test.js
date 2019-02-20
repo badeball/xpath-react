@@ -23,7 +23,6 @@ const document = (
           <img id='hoge' className='img-2' />
           <br id='nSib' />
           Share your codes!
-          <input htmlFor='foo' />
         </p>
         <cite className='cite site'>
           <a title='CodeRepos' href='http://coderepos.org/'>CodeRepos</a>
@@ -317,10 +316,6 @@ suite("XPathReact", function () {
 
     test("69", function () {
       assertEvaluatesToNodeSet("id('foo')/ancestor-or-self::*[./@id='paragraph']", ["p"]);
-    });
-
-    test("70", function () {
-      assertEvaluatesToNodeSet("/descendant::node()[@for]", ["input"]);
     });
   });
 });
