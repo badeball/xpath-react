@@ -37,7 +37,7 @@ const document = (
       </h4>
     </menu>
     <span id='n24' title='24' className='25'>
-      <acronym id='n25' title='25' className='23'>acronym</acronym>
+      <article id='n25' title='25' className='23'>article</article>
       <q id='n26' title='26' className='24' cite='n8 n17'>q</q>
     </span>
   </div>
@@ -84,7 +84,7 @@ suite("XPathReact", function () {
     });
 
     test("09", function () {
-      assertEvaluatesToNodeSet(".//blockquote/following::*", ["h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//blockquote/following::*", ["h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("10", function () {
@@ -144,7 +144,7 @@ suite("XPathReact", function () {
     });
 
     test("24", function () {
-      assertEvaluatesToNodeSet(".//*[preceding::blockquote]", ["h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[preceding::blockquote]", ["h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("25", function () {
@@ -152,11 +152,11 @@ suite("XPathReact", function () {
     });
 
     test("26", function () {
-      assertEvaluatesToNodeSet(".//*[@id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[@id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("27", function () {
-      assertEvaluatesToNodeSet(".//*[attribute::id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[attribute::id]", ["div", "dl", "dt", "dd", "menu", "h1", "em", "strong", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("28", function () {
@@ -179,11 +179,11 @@ suite("XPathReact", function () {
     });
 
     test("32", function () {
-      assertEvaluatesToNodeSet(".//*[not(child::*) and preceding::font]", ["dfn", "a", "sub", "sup", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[not(child::*) and preceding::font]", ["dfn", "a", "sub", "sup", "article", "q"]);
     });
 
     test("33", function () {
-      assertEvaluatesToNodeSet(".//*[preceding::blockquote or following::blockquote]", ["dl", "dt", "dd", "h1", "em", "strong", "h2", "b", "s", "h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[preceding::blockquote or following::blockquote]", ["dl", "dt", "dd", "h1", "em", "strong", "h2", "b", "s", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("34", function () {
@@ -199,11 +199,11 @@ suite("XPathReact", function () {
     });
 
     test("37", function () {
-      assertEvaluatesToNodeSet(".//*[@title != @class]", ["div", "dl", "dt", "dd", "menu", "em", "strong", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "dfn", "a", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[@title != @class]", ["div", "dl", "dt", "dd", "menu", "em", "strong", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "dfn", "a", "sub", "sup", "span", "article", "q"]);
     });
 
     test("38", function () {
-      assertEvaluatesToNodeSet(".//*[((@class * @class + @title * @title) div (@class + @title)) > ((@class - @title) * (@class - @title))]", ["dl", "h1", "h2", "s", "blockquote", "br", "p", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[((@class * @class + @title * @title) div (@class + @title)) > ((@class - @title) * (@class - @title))]", ["dl", "h1", "h2", "s", "blockquote", "br", "p", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("39", function () {
@@ -344,7 +344,7 @@ suite("XPathReact", function () {
     });
 
     test("75", function () {
-      assertEvaluatesToNodeSet(".//*[floor(@title div @class) = 1]", ["h1", "em", "strong", "h2", "b", "s", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[floor(@title div @class) = 1]", ["h1", "em", "strong", "h2", "b", "s", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "article", "q"]);
     });
 
     test("76", function () {
@@ -352,7 +352,7 @@ suite("XPathReact", function () {
     });
 
     test("77", function () {
-      assertEvaluatesToNodeSet(".//*[round(@title div @class) = 1]", ["dl", "h1", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "acronym", "q"]);
+      assertEvaluatesToNodeSet(".//*[round(@title div @class) = 1]", ["dl", "h1", "h2", "b", "s", "blockquote", "br", "p", "del", "ins", "font", "h3", "dfn", "a", "h4", "sub", "sup", "span", "article", "q"]);
     });
 
     test("78", function () {
