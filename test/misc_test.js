@@ -87,5 +87,9 @@ suite("XPathReact", function () {
     test("09", function () {
       assertEvaluatesToValue("id('ppp')[true()] + 1", 2);
     });
+
+    test("10", function () {
+      assertEvaluatesToValue("position()", 1);
+    });
   });
 });
