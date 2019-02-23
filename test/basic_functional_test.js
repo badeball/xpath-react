@@ -360,5 +360,9 @@ suite("XPathReact", function () {
     test("78", function () {
       assertEvaluatesToNodeSet("/..", []);
     });
+
+    test("79", function () {
+      assertEvaluatesToNodeSet(".//blockquote/ancestor::*[true()]", ["div", "center"]);
+    });
   });
 });
