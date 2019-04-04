@@ -6,6 +6,11 @@ all: lint test
 
 ci: lint test-cover
 
+clean-install:
+	@rm -rf node_modules/
+	@npm install
+	@npm install --no-save react@16 react-dom@16 react-test-renderer@16 xpath-evaluator@3
+
 lint:
 	@$(ESLINT) .
 
@@ -15,4 +20,4 @@ test:
 test-cover:
 	@$(ISTANBUL) cover --report lcov $(MOCHA) -- --reporter dot --ui tdd --compilers js:babel/register test/**/*_test.js
 
-.PHONY: lint test test-cover
+.PHONY: clean-install lint test test-cover
