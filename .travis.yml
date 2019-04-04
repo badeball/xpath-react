@@ -4,10 +4,6 @@ node_js:
 env:
   - REACT_VERSION=15
   - REACT_VERSION=16
-script:
-  - npm install xpath-evaluator
-  - npm install react@$REACT_VERSION
-  - npm install react-dom@$REACT_VERSION
-  - npm install react-test-renderer@$REACT_VERSION
-  - make ci
+install: make clean-install REACT_VERSION=$REACT_VERSION
+script: make ci
 after_script: node_modules/.bin/codeclimate-test-reporter < coverage/lcov.info
