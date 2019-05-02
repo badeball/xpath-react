@@ -4,9 +4,9 @@
 [![Code Climate](https://codeclimate.com/github/badeball/xpath-react/badges/gpa.svg)](https://codeclimate.com/github/badeball/xpath-react)
 [![Test Coverage](https://codeclimate.com/github/badeball/xpath-react/badges/coverage.svg)](https://codeclimate.com/github/badeball/xpath-react/coverage)
 
-A React adapter for [xpath-evaluator][xpath-evaluator]. Together with its
-dependencies, it allows you to query the internal DOM of [React][react] with
-XPath 1.0 expressions and thus testing it without a real DOM.
+`xpath-react` is a library that allows you to query the virtual DOM of
+[React][react] with XPath 1.0 expressions and thus testing it without a real
+DOM.
 
 ## Table of Contents
 
