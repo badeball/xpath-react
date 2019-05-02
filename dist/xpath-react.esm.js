@@ -2111,98 +2111,6 @@ class ReactAttribute {
   }
 }
 
-class ReactText {
-  constructor (textContent, parent, nChild) {
-    this.textContent = textContent;
-    this.parent = parent;
-    this.nChild = nChild;
-  }
-
-  getId() {
-    return this.getParent().getId() + "." + this.nChild;
-  }
-
-  isEqual(node) {
-    return this.getId() === node.getId();
-  }
-
-  getNativeNode() {
-    return this.textContent;
-  }
-
-  asString() {
-    return this.textContent;
-  }
-
-  asNumber() {
-    return +this.asString();
-  }
-
-  getNodeType() {
-    return TEXT_NODE;
-  }
-
-  getParent() {
-    return this.parent;
-  }
-
-  getChildNodes() {
-    return undefined;
-  }
-
-  getFollowingSiblings() {
-    const followingSiblings = [];
-
-    const siblings = this.getParent().getChildNodes();
-
-    const thisSiblingIndex = siblings.findIndex((sibling) => {
-      return sibling.getNativeNode() === this.getNativeNode();
-    });
-
-    for (let i = thisSiblingIndex + 1; i < siblings.length; i++) {
-      followingSiblings.push(siblings[i]);
-    }
-
-    return followingSiblings;
-  }
-
-  getPrecedingSiblings() {
-    const precedingSiblings = [];
-
-    const siblings = this.getParent().getChildNodes();
-
-    const thisSiblingIndex = siblings.findIndex((sibling) => {
-      return sibling.getNativeNode() === this.getNativeNode();
-    });
-
-    for (let i = 0; i < thisSiblingIndex; i++) {
-      precedingSiblings.push(siblings[i]);
-    }
-
-    return precedingSiblings;
-  }
-
-  getName() {
-    return undefined;
-  }
-
-  getAttributes() {
-    return undefined;
-  }
-
-  getOwnerDocument() {
-    return this.getParent().getOwnerDocument();
-  }
-
-  toString() {
-    return "Node<text(" + this.textContent + ")>";
-  }
-
-  compareDocumentPosition(other) {
-    return compareDocumentPosition(this, other);
-  }
-}
-
 class ReactElement {
   constructor(nativeNode, parent, nChild) {
     this.nativeNode = nativeNode;
@@ -2252,32 +2160,7 @@ class ReactElement {
       return [];
     }
 
-    const children = [];
-
-    const addChild = (child, i) => {
-      if (child) {
-        if (typeof child === "string") {
-          children.push(new ReactText(child, this, i));
-        } else {
-          children.push(new ReactElement(child, this, i));
-        }
-      }
-    };
-
-    function flatten (array) {
-      return array.reduce(function(memo, el) {
-        const items = Array.isArray(el) ? flatten(el) : [el];
-        return memo.concat(items);
-      }, []);
-    }
-
-    const flattenedChildren = flatten([this.nativeNode.props.children]);
-
-    for (let i = 0; i < flattenedChildren.length; i++) {
-      addChild(flattenedChildren[i], i);
-    }
-
-    return children;
+    return wrapNativeElements(this, this.nativeNode.props.children);
   }
 
   getFollowingSiblings() {
@@ -2387,13 +2270,140 @@ class ReactElement {
   }
 }
 
-class ReactDocument {
-  constructor(nativeNode) {
-    if (!isValidElement(nativeNode)) {
-      throw new Error("Expected a React element");
+class ReactPrimitiveBase {
+  constructor (nativeNode, parent, nChild) {
+    this.nativeNode = nativeNode;
+    this.parent = parent;
+    this.nChild = nChild;
+  }
+
+  getId() {
+    return this.getParent().getId() + "." + this.nChild;
+  }
+
+  isEqual(node) {
+    return this.getId() === node.getId();
+  }
+
+  getNativeNode() {
+    return this.nativeNode;
+  }
+
+  getNodeType() {
+    return TEXT_NODE;
+  }
+
+  getParent() {
+    return this.parent;
+  }
+
+  getChildNodes() {
+    return undefined;
+  }
+
+  getFollowingSiblings() {
+    const followingSiblings = [];
+
+    const siblings = this.getParent().getChildNodes();
+
+    const thisSiblingIndex = siblings.findIndex((sibling) => {
+      return sibling.getNativeNode() === this.getNativeNode();
+    });
+
+    for (let i = thisSiblingIndex + 1; i < siblings.length; i++) {
+      followingSiblings.push(siblings[i]);
     }
 
-    this.elementNode = new ReactElement(nativeNode, this, 0);
+    return followingSiblings;
+  }
+
+  getPrecedingSiblings() {
+    const precedingSiblings = [];
+
+    const siblings = this.getParent().getChildNodes();
+
+    const thisSiblingIndex = siblings.findIndex((sibling) => {
+      return sibling.getNativeNode() === this.getNativeNode();
+    });
+
+    for (let i = 0; i < thisSiblingIndex; i++) {
+      precedingSiblings.push(siblings[i]);
+    }
+
+    return precedingSiblings;
+  }
+
+  getName() {
+    return undefined;
+  }
+
+  getAttributes() {
+    return undefined;
+  }
+
+  getOwnerDocument() {
+    return this.getParent().getOwnerDocument();
+  }
+
+  toString() {
+    return "Node<primitive(" + this.nativeNode + ")>";
+  }
+
+  compareDocumentPosition(other) {
+    return compareDocumentPosition(this, other);
+  }
+}
+
+class ReactText extends ReactPrimitiveBase {
+  asString() {
+    return this.nativeNode;
+  }
+
+  asNumber() {
+    return +this.asString();
+  }
+}
+
+class ReactNumber extends ReactPrimitiveBase {
+  asString() {
+    return "" + this.asNumber();
+  }
+
+  asNumber() {
+    return this.nativeNode;
+  }
+}
+
+function flatten (array) {
+  return array.reduce(function(memo, el) {
+    const items = Array.isArray(el) ? flatten(el) : [el];
+    return memo.concat(items);
+  }, []);
+}
+
+function wrapNativeElement (parent, nativeElement, index) {
+  if (typeof nativeElement === "string") {
+    return new ReactText(nativeElement, parent, index);
+  } else if (typeof nativeElement === "number") {
+    return new ReactNumber(nativeElement, parent, index);
+  } else if (isValidElement(nativeElement)) {
+    return new ReactElement(nativeElement, parent, index);
+  } else {
+    throw new Error("Expected a React element");
+  }
+}
+
+function notNoopElement (nativeElement) {
+  return nativeElement != null && typeof nativeElement !== "boolean";
+}
+
+function wrapNativeElements (parent, nativeElements) {
+  return flatten([nativeElements]).filter(notNoopElement).map(wrapNativeElement.bind(null, parent));
+}
+
+class ReactDocument {
+  constructor(nativeChildOrChildren) {
+    this.children = wrapNativeElements(this, nativeChildOrChildren);
   }
 
   getId() {
@@ -2409,7 +2419,16 @@ class ReactDocument {
   }
 
   asString() {
-    return this.elementNode.asString();
+    let textContent = "";
+
+    this.getChildNodes().forEach(function (child) {
+      if (child.getNodeType() === ELEMENT_NODE ||
+          child.getNodeType() === TEXT_NODE) {
+        textContent = textContent + child.asString();
+      }
+    });
+
+    return textContent;
   }
 
   asNumber() {
@@ -2421,7 +2440,7 @@ class ReactDocument {
   }
 
   getChildNodes() {
-    return [this.elementNode];
+    return this.children;
   }
 
   getFollowingSiblings() {
@@ -2445,9 +2464,15 @@ class ReactDocument {
   }
 
   getElementById(id) {
-    /* eslint-disable no-underscore-dangle */
-    return this.elementNode._getElementById(id);
-    /* eslint-enable no-underscore-dangle */
+    for (let i = 0; i < this.children.length; i++) {
+      /* eslint-disable no-underscore-dangle */
+      const result = this.children[i]._getElementById(id);
+      /* eslint-enable no-underscore-dangle */
+
+      if (result) {
+        return result;
+      }
+    }
   }
 
   toString() {
