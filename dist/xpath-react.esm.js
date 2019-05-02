@@ -2441,7 +2441,7 @@ class ReactDocument {
   }
 
   getOwnerDocument() {
-    return undefined;
+    return this;
   }
 
   getElementById(id) {
