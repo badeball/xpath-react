@@ -5,6 +5,12 @@
   "main": "dist/xpath-react.cjs.js",
   "module": "dist/xpath-react.esm.js",
   "author": "Jonas Amundsen <jonasba@gmail.com>",
+  "keywords": [
+    "react",
+    "xpath",
+    "test",
+    "testing"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/badeball/xpath-react.git"
