@@ -1,6 +1,6 @@
 {
   "name": "xpath-react",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "A React adapter for xpath-evaluator.",
   "main": "dist/xpath-react.cjs.js",
   "module": "dist/xpath-react.esm.js",
