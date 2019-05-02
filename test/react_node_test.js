@@ -2,6 +2,8 @@ import React from "react";
 
 import Assert from "assert";
 
+import Semver from "semver";
+
 import { shallow } from "./helper";
 
 import { evaluate, XPathResult } from "../lib";
@@ -37,6 +39,10 @@ const FragmentTest = function () {
   ];
 };
 
+const react16Suite = Semver.major(React.version) === 16
+  ? suite
+  : suite.skip;
+
 suite("XPathReact", function () {
   suite("ReactNode", function () {
     suite("null", function () {
@@ -71,7 +77,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("undefined", function () {
+    react16Suite("undefined", function () {
       test("string value", function () {
         const document = shallow(<UndefinedTest />);
 
@@ -103,7 +109,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("false", function () {
+    react16Suite("false", function () {
       test("string value", function () {
         const document = shallow(<FalseTest />);
 
@@ -135,7 +141,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("true", function () {
+    react16Suite("true", function () {
       test("string value", function () {
         const document = shallow(<TrueTest />);
 
@@ -167,7 +173,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("string", function () {
+    react16Suite("string", function () {
       test("string value", function () {
         const document = shallow(<StringTest />);
 
@@ -199,7 +205,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("number", function () {
+    react16Suite("number", function () {
       test("string value", function () {
         const document = shallow(<NumberTest />);
 
@@ -241,7 +247,7 @@ suite("XPathReact", function () {
       });
     });
 
-    suite("fragment", function () {
+    react16Suite("fragment", function () {
       test("string value", function () {
         const document = shallow(<FragmentTest />);
 
